@@ -1,5 +1,10 @@
 # import Application from './generated/prisma.graphql'
+# import ApplicationCreateInput from './generated/prisma.graphql'
 
 type Query {
   applications(searchString: String): [Application!]!
+}
+
+type Mutation {
+  createApplication(data: ApplicationCreateInput): Application
 }
