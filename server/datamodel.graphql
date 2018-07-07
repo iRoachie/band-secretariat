@@ -1,0 +1,59 @@
+type PhoneNumber {
+  id: ID! @unique
+  label: String!
+  number: String!
+}
+
+enum Sex {
+  M
+  F
+}
+
+enum Band {
+  Pathfinder
+  Adventurer
+}
+
+enum MinistryArea {
+  AdventurerClubMember
+  AdventurerClubOfficer
+  PathfinderClubMember
+  PathfinderClubOfficer
+  AdventistYouthOffice
+  MasterGuideInTraining
+  AYLeadershipTraining
+  PLATraining
+  APLATraing
+  AmbassadorTraining
+}
+
+type Application {
+  id: ID! @unique
+  band: Band!
+  applicationDate: DateTime!
+  firstName: String!
+  surName: String!
+  otherNames: String
+  country: String
+  nationality: String
+  address: String
+  dateOfBirth: DateTime!
+  phone: [PhoneNumber!]!
+  email: String
+  height: String
+  weight: String
+  sex: Sex!
+  parent_gaurdian: String
+  occupation: String
+  employer_school: String
+  grade: String
+  accessedInstrument: String
+  bandExperience: String
+  pathfinder_adventurerClass: String
+  club: String
+  church: String
+  churchPosition: String
+  minstryArea: MinistryArea
+  interestedInstruments: [String!]!
+  reason: String
+}
