@@ -1,9 +1,11 @@
 # import Application from './generated/prisma.graphql'
 # import ApplicationCreateInput from './generated/prisma.graphql'
 # import ApplicationUpdateInput from './generated/prisma.graphql'
+# import ApplicationWhereUniqueInput from './generated/prisma.graphql'
 
 type Query {
   applications(searchString: String): [Application!]!
+  application(id: ID!): Application
 }
 
 type Mutation {

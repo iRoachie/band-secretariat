@@ -16,6 +16,16 @@ const resolvers = {
         },
         info
       );
+    },
+    application: (_, args, context: Context, info) => {
+      return context.db.query.application(
+        {
+          where: {
+            id: args.id
+          }
+        },
+        info
+      );
     }
   },
   Mutation: {
