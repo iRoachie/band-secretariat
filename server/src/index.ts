@@ -19,11 +19,17 @@ const resolvers = {
     }
   },
   Mutation: {
-    createApplication: (_, args, context: Context, info) => {
+    createApplication: (_, args, context: Context) => {
       return context.db.mutation.createApplication({
         data: {
           ...args.data
         }
+      });
+    },
+    updateApplication: (_, args, context: Context) => {
+      return context.db.mutation.updateApplication({
+        where: { id: args.id },
+        data: args.data
       });
     }
   }
