@@ -1,0 +1,5 @@
+# import Application from './generated/prisma.graphql'
+
+type Query {
+  applications(searchString: String): [Application!]!
+}
