@@ -6,6 +6,6 @@
   "author": "Kyle Roach <kroach.work@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "postinstall": "yarn --cwd server && yarn --cwd client"
+    "postinstall": "yarn --cwd server"
   }
 }
