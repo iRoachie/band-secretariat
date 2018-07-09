@@ -1,0 +1,11 @@
+{
+  "name": "band-secretariat",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:iRoachie/band-secretariat.git",
+  "author": "Kyle Roach <kroach.work@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "postinstall": "yarn --cwd server"
+  }
+}
