@@ -80,6 +80,7 @@ type Application implements Node {
   address: String
   dateOfBirth: DateTime!
   phone(where: PhoneNumberWhereInput, orderBy: PhoneNumberOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PhoneNumber!]
+  photoURL: String
   email: String
   height: String
   weight: String
@@ -119,6 +120,7 @@ input ApplicationCreateInput {
   nationality: String
   address: String
   dateOfBirth: DateTime!
+  photoURL: String
   email: String
   height: String
   weight: String
@@ -173,6 +175,8 @@ enum ApplicationOrderByInput {
   address_DESC
   dateOfBirth_ASC
   dateOfBirth_DESC
+  photoURL_ASC
+  photoURL_DESC
   email_ASC
   email_DESC
   height_ASC
@@ -222,6 +226,7 @@ type ApplicationPreviousValues {
   nationality: String
   address: String
   dateOfBirth: DateTime!
+  photoURL: String
   email: String
   height: String
   weight: String
@@ -290,6 +295,7 @@ input ApplicationUpdateInput {
   nationality: String
   address: String
   dateOfBirth: DateTime
+  photoURL: String
   email: String
   height: String
   weight: String
@@ -657,6 +663,46 @@ input ApplicationWhereInput {
 
   """All values greater than or equal the given value."""
   dateOfBirth_gte: DateTime
+  photoURL: String
+
+  """All values that are not equal to given value."""
+  photoURL_not: String
+
+  """All values that are contained in given list."""
+  photoURL_in: [String!]
+
+  """All values that are not contained in given list."""
+  photoURL_not_in: [String!]
+
+  """All values less than the given value."""
+  photoURL_lt: String
+
+  """All values less than or equal the given value."""
+  photoURL_lte: String
+
+  """All values greater than the given value."""
+  photoURL_gt: String
+
+  """All values greater than or equal the given value."""
+  photoURL_gte: String
+
+  """All values containing the given string."""
+  photoURL_contains: String
+
+  """All values not containing the given string."""
+  photoURL_not_contains: String
+
+  """All values starting with the given string."""
+  photoURL_starts_with: String
+
+  """All values not starting with the given string."""
+  photoURL_not_starts_with: String
+
+  """All values ending with the given string."""
+  photoURL_ends_with: String
+
+  """All values not ending with the given string."""
+  photoURL_not_ends_with: String
   email: String
 
   """All values that are not equal to given value."""
@@ -1632,6 +1678,8 @@ export type ApplicationOrderByInput =   'id_ASC' |
   'address_DESC' |
   'dateOfBirth_ASC' |
   'dateOfBirth_DESC' |
+  'photoURL_ASC' |
+  'photoURL_DESC' |
   'email_ASC' |
   'email_DESC' |
   'height_ASC' |
@@ -1717,6 +1765,7 @@ export interface ApplicationCreateInput {
   nationality?: String
   address?: String
   dateOfBirth: DateTime
+  photoURL?: String
   email?: String
   height?: String
   weight?: String
@@ -1864,6 +1913,20 @@ export interface ApplicationWhereInput {
   dateOfBirth_lte?: DateTime
   dateOfBirth_gt?: DateTime
   dateOfBirth_gte?: DateTime
+  photoURL?: String
+  photoURL_not?: String
+  photoURL_in?: String[] | String
+  photoURL_not_in?: String[] | String
+  photoURL_lt?: String
+  photoURL_lte?: String
+  photoURL_gt?: String
+  photoURL_gte?: String
+  photoURL_contains?: String
+  photoURL_not_contains?: String
+  photoURL_starts_with?: String
+  photoURL_not_starts_with?: String
+  photoURL_ends_with?: String
+  photoURL_not_ends_with?: String
   email?: String
   email_not?: String
   email_in?: String[] | String
@@ -2132,6 +2195,7 @@ export interface ApplicationUpdateInput {
   nationality?: String
   address?: String
   dateOfBirth?: DateTime
+  photoURL?: String
   email?: String
   height?: String
   weight?: String
@@ -2250,6 +2314,7 @@ export interface Application extends Node {
   address?: String
   dateOfBirth: DateTime
   phone?: PhoneNumber[]
+  photoURL?: String
   email?: String
   height?: String
   weight?: String
@@ -2330,6 +2395,7 @@ export interface ApplicationPreviousValues {
   nationality?: String
   address?: String
   dateOfBirth: DateTime
+  photoURL?: String
   email?: String
   height?: String
   weight?: String

@@ -39,6 +39,7 @@ type Application {
   address: String
   dateOfBirth: DateTime!
   phone: [PhoneNumber!]!
+  photoURL: String
   email: String
   height: String
   weight: String
