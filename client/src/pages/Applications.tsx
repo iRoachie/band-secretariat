@@ -1,5 +1,5 @@
 import React from 'react'
-import { Page, Form } from 'tabler-react'
+import { Page } from '../components'
 
 interface State {
   search: string
@@ -16,22 +16,9 @@ class Applications extends React.Component<{}, State> {
 
   render() {
     return (
-      <Page.Content>
-        <Page.Header
-          title="Applications"
-          options={
-            <React.Fragment>
-              <Form.Input
-                icon="search"
-                value={this.state.search}
-                placeholder="Search applications"
-                onChange={({ target }: any) => this.updateState(target.value)}
-              />
-            </React.Fragment>
-          }
-        />
+      <Page title="Applications">
         <p>Hey</p>
-      </Page.Content>
+      </Page>
     )
   }
 }

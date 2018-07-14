@@ -1,3 +1,4 @@
-import SiteWrapper from './SiteWrapper'
+import Header from './Header'
+import Page from './Page'
 
-export { SiteWrapper }
+export { Header, Page }

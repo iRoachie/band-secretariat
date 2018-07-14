@@ -2,18 +2,20 @@ import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { ApolloProvider } from 'react-apollo'
 
-import { SiteWrapper } from './components'
+import { Header } from './components'
 import { Applications } from './pages'
 import client from './config/graphql'
 
 const App = () => (
   <ApolloProvider client={client}>
     <Router>
-      <SiteWrapper>
+      <>
+        <Header />
+
         <Switch>
-          <Route exact path="/" component={Applications} />
+          <Route exact path="/applications" component={Applications} />
         </Switch>
-      </SiteWrapper>
+      </>
     </Router>
   </ApolloProvider>
 )

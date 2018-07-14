@@ -1,0 +1,47 @@
+@import 'reset';
+@import 'grid';
+
+:root {
+  font-family: 'Palanquin', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 17px;
+}
+
+body {
+  margin: 0;
+  background: #f5f7f9;
+}
+
+img {
+  max-width: 100%;
+}
+
+p {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+h1,
+h2,
+h3 {
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.2;
+  color: inherit;
+}
+
+h1 {
+  font-size: 1.25rem;
+}
+
+h2 {
+  font-size: 1.15rem;
+}
+h3 {
+  font-size: 1.05rem;
+}
+
+a {
+  text-decoration: none;
+}
