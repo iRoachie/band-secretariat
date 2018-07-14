@@ -1,11 +1,13 @@
 @import 'reset';
 @import 'grid';
+@import 'tailwind';
 
 :root {
   font-family: 'Palanquin', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-size: 17px;
+  font-size: 16px;
+  --primary: #009688;
 }
 
 body {
@@ -44,4 +46,8 @@ h3 {
 
 a {
   text-decoration: none;
+}
+
+.bg-primary {
+  background: var(--primary);
 }

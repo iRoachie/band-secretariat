@@ -1,37 +1,14 @@
 import styled from 'styled-components'
-import { Link, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { Theme, media } from '../../config'
 
-const Content = styled.header`
-  background-color: #fff;
-  height: 60px;
-  box-shadow: 0px 1px 1px 0 rgba(0, 0, 0, 0.3);
-  position: relative;
-  z-index: 2;
-`
+const HeaderLeft = styled.section.attrs({
+  className: 'flex flex-1 h-16 items-center',
+})``
 
-const Container = styled.div`
-  height: inherit;
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-`
-
-const HeaderLeft = styled.div`
-  flex: 1;
-  display: flex;
-  align-items: center;
-  height: inherit;
-`
-
-const HeaderRight = styled.ul`
-  position: relative;
-  padding-left: 20px;
-
-  @media ${media.small} {
-    padding-left: 40px;
-  }
-
+const HeaderRight = styled.ul.attrs({
+  className: 'relative pl-5 sm:pl-10',
+})`
   &::before {
     content: '';
     width: 1px;
@@ -44,42 +21,17 @@ const HeaderRight = styled.ul`
   }
 `
 
-const Logo = styled.img`
-  height: inherit;
-  border-radius: 8px;
-  min-width: 40px;
-`
-
-const LogoLink = styled(Link)`
-  height: 40px;
-`
-
-const NavItems = styled.ul`
-  display: none;
-  margin-left: 15px;
-  height: inherit;
-
-  @media ${media.small} {
-    display: block;
-    margin-left: 40px;
-  }
-`
-
-const NavItem = styled(NavLink)`
+const NavItem = styled(NavLink).attrs({
+  className:
+    'h-full inline-flex items-center relative pr-4 sm:pl-5 sm:pr-5 font-semibold',
+})`
   color: rgba(255, 255, 255, 0.56);
-  height: inherit;
-  display: inline-flex;
-  align-items: center;
-  position: relative;
-  padding: 0 15px;
-  font-weight: 600;
 
   &.active {
     color: #fff;
   }
 
   @media ${media.small} {
-    padding: 0 20px;
     color: rgba(0, 0, 0, 0.56);
 
     &.active {
@@ -99,30 +51,18 @@ const NavItem = styled(NavLink)`
   }
 `
 
-const Account = styled.p`
+const Account = styled.p.attrs({
+  className: 'font-semibold text-sm',
+})`
   color: rgba(0, 0, 0, 0.26);
-  font-weight: 600;
-  font-size: 0.9rem;
 `
 
-const MobileNav = styled.nav`
-  background-color: ${Theme.primary};
-  height: 40px;
+const DesktopNav = styled.nav.attrs({
+  className: 'shadow relative z-10 bg-white h-16',
+})``
 
-  @media ${media.small} {
-    display: none;
-  }
-`
+const MobileNav = styled.nav.attrs({
+  className: 'flex items-center sm:hidden bg-primary h-10',
+})``
 
-export {
-  Content,
-  Container,
-  Logo,
-  NavItems,
-  NavItem,
-  LogoLink,
-  HeaderLeft,
-  HeaderRight,
-  Account,
-  MobileNav,
-}
+export { DesktopNav, NavItem, HeaderLeft, HeaderRight, Account, MobileNav }

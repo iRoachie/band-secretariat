@@ -1,5 +1,5 @@
 import React from 'react'
-import { Page, Button } from '../components'
+import { Page, Button } from '../../components'
 
 interface State {
   search: string
