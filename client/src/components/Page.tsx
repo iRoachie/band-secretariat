@@ -14,16 +14,14 @@ const Content = styled.div`
 `
 
 interface Props {
-  title?: string
+  renderHeader?: React.ReactNode
 }
 
 const Page: React.SFC<Props> = props => (
   <main>
-    {props.title && (
+    {props.renderHeader && (
       <Header>
-        <div className="container">
-          <h1>{props.title}</h1>
-        </div>
+        <div className="container">{props.renderHeader}</div>
       </Header>
     )}
 
