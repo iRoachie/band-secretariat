@@ -1,8 +1,9 @@
 import React from 'react'
+import { DateTime } from '../../../../../server/src/generated/prisma'
 
 interface ItemsProps {
   icon: string
-  value: string
+  value: string | DateTime
 }
 
 const Item: React.SFC<ItemsProps> = ({ value, icon }) => (
