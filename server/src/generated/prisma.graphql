@@ -1,5 +1,5 @@
 # source: http://localhost:4466
-# timestamp: Sat Jul 14 2018 13:06:46 GMT-0400 (AST)
+# timestamp: Sat Jul 14 2018 13:15:00 GMT-0400 (AST)
 
 type AggregateApplication {
   count: Int!
@@ -39,6 +39,7 @@ type Application implements Node {
   minstryArea: MinistryArea
   interestedInstruments: [String!]!
   reason: String
+  status: ApplicationStatus!
 }
 
 """A connection to a list of items."""
@@ -78,6 +79,7 @@ input ApplicationCreateInput {
   churchPosition: String
   minstryArea: MinistryArea
   reason: String
+  status: ApplicationStatus
   interestedInstruments: ApplicationCreateinterestedInstrumentsInput
   phone: PhoneNumberCreateManyInput
 }
@@ -150,6 +152,8 @@ enum ApplicationOrderByInput {
   minstryArea_DESC
   reason_ASC
   reason_DESC
+  status_ASC
+  status_DESC
   updatedAt_ASC
   updatedAt_DESC
   createdAt_ASC
@@ -185,6 +189,13 @@ type ApplicationPreviousValues {
   minstryArea: MinistryArea
   interestedInstruments: [String!]!
   reason: String
+  status: ApplicationStatus!
+}
+
+enum ApplicationStatus {
+  APPLIED
+  ASSIGNED
+  PASSED_OUT
 }
 
 type ApplicationSubscriptionPayload {
@@ -253,6 +264,7 @@ input ApplicationUpdateInput {
   churchPosition: String
   minstryArea: MinistryArea
   reason: String
+  status: ApplicationStatus
   interestedInstruments: ApplicationUpdateinterestedInstrumentsInput
   phone: PhoneNumberUpdateManyInput
 }
@@ -1224,6 +1236,16 @@ input ApplicationWhereInput {
 
   """All values not ending with the given string."""
   reason_not_ends_with: String
+  status: ApplicationStatus
+
+  """All values that are not equal to given value."""
+  status_not: ApplicationStatus
+
+  """All values that are contained in given list."""
+  status_in: [ApplicationStatus!]
+
+  """All values that are not contained in given list."""
+  status_not_in: [ApplicationStatus!]
   phone_every: PhoneNumberWhereInput
   phone_some: PhoneNumberWhereInput
   phone_none: PhoneNumberWhereInput

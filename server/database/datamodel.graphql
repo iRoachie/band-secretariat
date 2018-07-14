@@ -14,6 +14,12 @@ enum Band {
   Adventurer
 }
 
+enum ApplicationStatus {
+  APPLIED
+  ASSIGNED
+  PASSED_OUT
+}
+
 enum MinistryArea {
   AdventurerClubMember
   AdventurerClubOfficer
@@ -57,4 +63,5 @@ type Application {
   minstryArea: MinistryArea
   interestedInstruments: [String!]!
   reason: String
+  status: ApplicationStatus! @default(value: "APPLIED")
 }

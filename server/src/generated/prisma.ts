@@ -98,6 +98,7 @@ type Application implements Node {
   minstryArea: MinistryArea
   interestedInstruments: [String!]!
   reason: String
+  status: ApplicationStatus!
 }
 
 """A connection to a list of items."""
@@ -137,6 +138,7 @@ input ApplicationCreateInput {
   churchPosition: String
   minstryArea: MinistryArea
   reason: String
+  status: ApplicationStatus
   interestedInstruments: ApplicationCreateinterestedInstrumentsInput
   phone: PhoneNumberCreateManyInput
 }
@@ -209,6 +211,8 @@ enum ApplicationOrderByInput {
   minstryArea_DESC
   reason_ASC
   reason_DESC
+  status_ASC
+  status_DESC
   updatedAt_ASC
   updatedAt_DESC
   createdAt_ASC
@@ -244,6 +248,13 @@ type ApplicationPreviousValues {
   minstryArea: MinistryArea
   interestedInstruments: [String!]!
   reason: String
+  status: ApplicationStatus!
+}
+
+enum ApplicationStatus {
+  APPLIED
+  ASSIGNED
+  PASSED_OUT
 }
 
 type ApplicationSubscriptionPayload {
@@ -312,6 +323,7 @@ input ApplicationUpdateInput {
   churchPosition: String
   minstryArea: MinistryArea
   reason: String
+  status: ApplicationStatus
   interestedInstruments: ApplicationUpdateinterestedInstrumentsInput
   phone: PhoneNumberUpdateManyInput
 }
@@ -1283,6 +1295,16 @@ input ApplicationWhereInput {
 
   """All values not ending with the given string."""
   reason_not_ends_with: String
+  status: ApplicationStatus
+
+  """All values that are not equal to given value."""
+  status_not: ApplicationStatus
+
+  """All values that are contained in given list."""
+  status_in: [ApplicationStatus!]
+
+  """All values that are not contained in given list."""
+  status_not_in: [ApplicationStatus!]
   phone_every: PhoneNumberWhereInput
   phone_some: PhoneNumberWhereInput
   phone_none: PhoneNumberWhereInput
@@ -1712,21 +1734,16 @@ export type ApplicationOrderByInput =   'id_ASC' |
   'minstryArea_DESC' |
   'reason_ASC' |
   'reason_DESC' |
+  'status_ASC' |
+  'status_DESC' |
   'updatedAt_ASC' |
   'updatedAt_DESC' |
   'createdAt_ASC' |
   'createdAt_DESC'
 
-export type PhoneNumberOrderByInput =   'id_ASC' |
-  'id_DESC' |
-  'label_ASC' |
-  'label_DESC' |
-  'number_ASC' |
-  'number_DESC' |
-  'updatedAt_ASC' |
-  'updatedAt_DESC' |
-  'createdAt_ASC' |
-  'createdAt_DESC'
+export type ApplicationStatus =   'APPLIED' |
+  'ASSIGNED' |
+  'PASSED_OUT'
 
 export type MinistryArea =   'AdventurerClubMember' |
   'AdventurerClubOfficer' |
@@ -1749,11 +1766,16 @@ export type MutationType =   'CREATED' |
 export type Band =   'Pathfinder' |
   'Adventurer'
 
-export interface PhoneNumberUpsertWithWhereUniqueNestedInput {
-  where: PhoneNumberWhereUniqueInput
-  update: PhoneNumberUpdateDataInput
-  create: PhoneNumberCreateInput
-}
+export type PhoneNumberOrderByInput =   'id_ASC' |
+  'id_DESC' |
+  'label_ASC' |
+  'label_DESC' |
+  'number_ASC' |
+  'number_DESC' |
+  'updatedAt_ASC' |
+  'updatedAt_DESC' |
+  'createdAt_ASC' |
+  'createdAt_DESC'
 
 export interface ApplicationCreateInput {
   band: Band
@@ -1782,13 +1804,14 @@ export interface ApplicationCreateInput {
   churchPosition?: String
   minstryArea?: MinistryArea
   reason?: String
+  status?: ApplicationStatus
   interestedInstruments?: ApplicationCreateinterestedInstrumentsInput
   phone?: PhoneNumberCreateManyInput
 }
 
-export interface PhoneNumberUpdateWithWhereUniqueNestedInput {
-  where: PhoneNumberWhereUniqueInput
-  data: PhoneNumberUpdateDataInput
+export interface PhoneNumberUpdateDataInput {
+  label?: String
+  number?: String
 }
 
 export interface ApplicationWhereInput {
@@ -2131,93 +2154,18 @@ export interface ApplicationWhereInput {
   reason_not_starts_with?: String
   reason_ends_with?: String
   reason_not_ends_with?: String
+  status?: ApplicationStatus
+  status_not?: ApplicationStatus
+  status_in?: ApplicationStatus[] | ApplicationStatus
+  status_not_in?: ApplicationStatus[] | ApplicationStatus
   phone_every?: PhoneNumberWhereInput
   phone_some?: PhoneNumberWhereInput
   phone_none?: PhoneNumberWhereInput
 }
 
-export interface PhoneNumberUpdateManyInput {
-  create?: PhoneNumberCreateInput[] | PhoneNumberCreateInput
-  connect?: PhoneNumberWhereUniqueInput[] | PhoneNumberWhereUniqueInput
-  disconnect?: PhoneNumberWhereUniqueInput[] | PhoneNumberWhereUniqueInput
-  delete?: PhoneNumberWhereUniqueInput[] | PhoneNumberWhereUniqueInput
-  update?: PhoneNumberUpdateWithWhereUniqueNestedInput[] | PhoneNumberUpdateWithWhereUniqueNestedInput
-  upsert?: PhoneNumberUpsertWithWhereUniqueNestedInput[] | PhoneNumberUpsertWithWhereUniqueNestedInput
-}
-
-export interface ApplicationSubscriptionWhereInput {
-  AND?: ApplicationSubscriptionWhereInput[] | ApplicationSubscriptionWhereInput
-  OR?: ApplicationSubscriptionWhereInput[] | ApplicationSubscriptionWhereInput
-  NOT?: ApplicationSubscriptionWhereInput[] | ApplicationSubscriptionWhereInput
-  mutation_in?: MutationType[] | MutationType
-  updatedFields_contains?: String
-  updatedFields_contains_every?: String[] | String
-  updatedFields_contains_some?: String[] | String
-  node?: ApplicationWhereInput
-}
-
-export interface ApplicationUpdateinterestedInstrumentsInput {
-  set?: String[] | String
-}
-
-export interface PhoneNumberSubscriptionWhereInput {
-  AND?: PhoneNumberSubscriptionWhereInput[] | PhoneNumberSubscriptionWhereInput
-  OR?: PhoneNumberSubscriptionWhereInput[] | PhoneNumberSubscriptionWhereInput
-  NOT?: PhoneNumberSubscriptionWhereInput[] | PhoneNumberSubscriptionWhereInput
-  mutation_in?: MutationType[] | MutationType
-  updatedFields_contains?: String
-  updatedFields_contains_every?: String[] | String
-  updatedFields_contains_some?: String[] | String
-  node?: PhoneNumberWhereInput
-}
-
-export interface ApplicationCreateinterestedInstrumentsInput {
-  set?: String[] | String
-}
-
-export interface PhoneNumberCreateManyInput {
-  create?: PhoneNumberCreateInput[] | PhoneNumberCreateInput
-  connect?: PhoneNumberWhereUniqueInput[] | PhoneNumberWhereUniqueInput
-}
-
-export interface PhoneNumberCreateInput {
-  label: String
-  number: String
-}
-
-export interface ApplicationUpdateInput {
-  band?: Band
-  applicationDate?: DateTime
-  firstName?: String
-  surName?: String
-  otherNames?: String
-  country?: String
-  nationality?: String
-  address?: String
-  dateOfBirth?: DateTime
-  photoURL?: String
-  email?: String
-  height?: String
-  weight?: String
-  sex?: Sex
-  parent_gaurdian?: String
-  occupation?: String
-  employer_school?: String
-  grade?: String
-  accessedInstrument?: String
-  bandExperience?: String
-  pathfinder_adventurerClass?: String
-  club?: String
-  church?: String
-  churchPosition?: String
-  minstryArea?: MinistryArea
-  reason?: String
-  interestedInstruments?: ApplicationUpdateinterestedInstrumentsInput
-  phone?: PhoneNumberUpdateManyInput
-}
-
-export interface ApplicationWhereUniqueInput {
-  id?: ID_Input
+export interface PhoneNumberUpdateWithWhereUniqueNestedInput {
+  where: PhoneNumberWhereUniqueInput
+  data: PhoneNumberUpdateDataInput
 }
 
 export interface PhoneNumberWhereInput {
@@ -2271,18 +2219,104 @@ export interface PhoneNumberWhereInput {
   _MagicalBackRelation_ApplicationToPhoneNumber_none?: ApplicationWhereInput
 }
 
+export interface PhoneNumberUpdateManyInput {
+  create?: PhoneNumberCreateInput[] | PhoneNumberCreateInput
+  connect?: PhoneNumberWhereUniqueInput[] | PhoneNumberWhereUniqueInput
+  disconnect?: PhoneNumberWhereUniqueInput[] | PhoneNumberWhereUniqueInput
+  delete?: PhoneNumberWhereUniqueInput[] | PhoneNumberWhereUniqueInput
+  update?: PhoneNumberUpdateWithWhereUniqueNestedInput[] | PhoneNumberUpdateWithWhereUniqueNestedInput
+  upsert?: PhoneNumberUpsertWithWhereUniqueNestedInput[] | PhoneNumberUpsertWithWhereUniqueNestedInput
+}
+
 export interface PhoneNumberUpdateInput {
   label?: String
   number?: String
 }
 
-export interface PhoneNumberUpdateDataInput {
-  label?: String
-  number?: String
+export interface ApplicationUpdateinterestedInstrumentsInput {
+  set?: String[] | String
+}
+
+export interface PhoneNumberSubscriptionWhereInput {
+  AND?: PhoneNumberSubscriptionWhereInput[] | PhoneNumberSubscriptionWhereInput
+  OR?: PhoneNumberSubscriptionWhereInput[] | PhoneNumberSubscriptionWhereInput
+  NOT?: PhoneNumberSubscriptionWhereInput[] | PhoneNumberSubscriptionWhereInput
+  mutation_in?: MutationType[] | MutationType
+  updatedFields_contains?: String
+  updatedFields_contains_every?: String[] | String
+  updatedFields_contains_some?: String[] | String
+  node?: PhoneNumberWhereInput
+}
+
+export interface ApplicationWhereUniqueInput {
+  id?: ID_Input
+}
+
+export interface ApplicationCreateinterestedInstrumentsInput {
+  set?: String[] | String
+}
+
+export interface PhoneNumberCreateManyInput {
+  create?: PhoneNumberCreateInput[] | PhoneNumberCreateInput
+  connect?: PhoneNumberWhereUniqueInput[] | PhoneNumberWhereUniqueInput
+}
+
+export interface PhoneNumberCreateInput {
+  label: String
+  number: String
+}
+
+export interface ApplicationUpdateInput {
+  band?: Band
+  applicationDate?: DateTime
+  firstName?: String
+  surName?: String
+  otherNames?: String
+  country?: String
+  nationality?: String
+  address?: String
+  dateOfBirth?: DateTime
+  photoURL?: String
+  email?: String
+  height?: String
+  weight?: String
+  sex?: Sex
+  parent_gaurdian?: String
+  occupation?: String
+  employer_school?: String
+  grade?: String
+  accessedInstrument?: String
+  bandExperience?: String
+  pathfinder_adventurerClass?: String
+  club?: String
+  church?: String
+  churchPosition?: String
+  minstryArea?: MinistryArea
+  reason?: String
+  status?: ApplicationStatus
+  interestedInstruments?: ApplicationUpdateinterestedInstrumentsInput
+  phone?: PhoneNumberUpdateManyInput
 }
 
 export interface PhoneNumberWhereUniqueInput {
   id?: ID_Input
+}
+
+export interface PhoneNumberUpsertWithWhereUniqueNestedInput {
+  where: PhoneNumberWhereUniqueInput
+  update: PhoneNumberUpdateDataInput
+  create: PhoneNumberCreateInput
+}
+
+export interface ApplicationSubscriptionWhereInput {
+  AND?: ApplicationSubscriptionWhereInput[] | ApplicationSubscriptionWhereInput
+  OR?: ApplicationSubscriptionWhereInput[] | ApplicationSubscriptionWhereInput
+  NOT?: ApplicationSubscriptionWhereInput[] | ApplicationSubscriptionWhereInput
+  mutation_in?: MutationType[] | MutationType
+  updatedFields_contains?: String
+  updatedFields_contains_every?: String[] | String
+  updatedFields_contains_some?: String[] | String
+  node?: ApplicationWhereInput
 }
 
 /*
@@ -2294,12 +2328,13 @@ export interface Node {
 }
 
 /*
- * An edge in a connection.
+ * A connection to a list of items.
 
  */
-export interface PhoneNumberEdge {
-  node: PhoneNumber
-  cursor: String
+export interface PhoneNumberConnection {
+  pageInfo: PageInfo
+  edges: PhoneNumberEdge[]
+  aggregate: AggregatePhoneNumber
 }
 
 export interface Application extends Node {
@@ -2332,6 +2367,7 @@ export interface Application extends Node {
   minstryArea?: MinistryArea
   interestedInstruments: String[]
   reason?: String
+  status: ApplicationStatus
 }
 
 export interface PhoneNumberPreviousValues {
@@ -2348,40 +2384,11 @@ export interface AggregatePhoneNumber {
   count: Int
 }
 
-/*
- * A connection to a list of items.
-
- */
-export interface PhoneNumberConnection {
-  pageInfo: PageInfo
-  edges: PhoneNumberEdge[]
-  aggregate: AggregatePhoneNumber
-}
-
-/*
- * An edge in a connection.
-
- */
-export interface ApplicationEdge {
-  node: Application
-  cursor: String
-}
-
 export interface ApplicationSubscriptionPayload {
   mutation: MutationType
   node?: Application
   updatedFields?: String[]
   previousValues?: ApplicationPreviousValues
-}
-
-/*
- * A connection to a list of items.
-
- */
-export interface ApplicationConnection {
-  pageInfo: PageInfo
-  edges: ApplicationEdge[]
-  aggregate: AggregateApplication
 }
 
 export interface ApplicationPreviousValues {
@@ -2413,10 +2420,7 @@ export interface ApplicationPreviousValues {
   minstryArea?: MinistryArea
   interestedInstruments: String[]
   reason?: String
-}
-
-export interface AggregateApplication {
-  count: Int
+  status: ApplicationStatus
 }
 
 export interface PhoneNumberSubscriptionPayload {
@@ -2426,10 +2430,33 @@ export interface PhoneNumberSubscriptionPayload {
   previousValues?: PhoneNumberPreviousValues
 }
 
+export interface AggregateApplication {
+  count: Int
+}
+
+/*
+ * An edge in a connection.
+
+ */
+export interface PhoneNumberEdge {
+  node: PhoneNumber
+  cursor: String
+}
+
 export interface PhoneNumber extends Node {
   id: ID_Output
   label: String
   number: String
+}
+
+/*
+ * A connection to a list of items.
+
+ */
+export interface ApplicationConnection {
+  pageInfo: PageInfo
+  edges: ApplicationEdge[]
+  aggregate: AggregateApplication
 }
 
 /*
@@ -2444,9 +2471,13 @@ export interface PageInfo {
 }
 
 /*
-The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. 
-*/
-export type Int = number
+ * An edge in a connection.
+
+ */
+export interface ApplicationEdge {
+  node: Application
+  cursor: String
+}
 
 /*
 The `Long` scalar type represents non-fractional signed whole numeric values.
@@ -2460,12 +2491,17 @@ The `ID` scalar type represents a unique identifier, often used to refetch an ob
 export type ID_Input = string | number
 export type ID_Output = string
 
-export type DateTime = Date | string
-
 /*
 The `Boolean` scalar type represents `true` or `false`.
 */
 export type Boolean = boolean
+
+export type DateTime = Date | string
+
+/*
+The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. 
+*/
+export type Int = number
 
 /*
 The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
