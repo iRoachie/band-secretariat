@@ -6,7 +6,9 @@
   font-family: 'Palanquin', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-size: 16px;
+  text-rendering: optimizeLegibility;
+  font-size: 18px;
+  color: rgba(0, 0, 0, 0.87);
   --primary: #009688;
 }
 
@@ -46,6 +48,7 @@ h3 {
 
 a {
   text-decoration: none;
+  color: inherit;
 }
 
 .bg-primary {

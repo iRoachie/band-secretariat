@@ -1,5 +1,5 @@
 import React from 'react'
-import { Page, Button } from '../../components'
+import { Page, Button, ApplicationCard } from '../../components'
 
 interface State {
   search: string
@@ -49,21 +49,11 @@ class Applications extends React.Component<{}, State> {
           </div>
         }
       >
-        <p>Hey</p>
-
         <div className="row">
-          <div className="col-md-1" />
-          <div className="col-md-1" />
-          <div className="col-md-1" />
-          <div className="col-md-1" />
-          <div className="col-md-1" />
-          <div className="col-md-1" />
-          <div className="col-md-1" />
-          <div className="col-md-1" />
-          <div className="col-md-1" />
-          <div className="col-md-1" />
-          <div className="col-md-1" />
-          <div className="col-md-1" />
+          <ApplicationCard status="APPLIED" />
+          <ApplicationCard status="ASSIGNED" />
+          <ApplicationCard status="INCOMPLETE" />
+          <ApplicationCard status="PASSED_OUT" />
         </div>
       </Page>
     )
