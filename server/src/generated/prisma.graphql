@@ -1,5 +1,5 @@
 # source: http://localhost:4466
-# timestamp: Sat Jul 14 2018 13:15:00 GMT-0400 (AST)
+# timestamp: Sat Jul 14 2018 13:25:54 GMT-0400 (AST)
 
 type AggregateApplication {
   count: Int!
@@ -196,6 +196,7 @@ enum ApplicationStatus {
   APPLIED
   ASSIGNED
   PASSED_OUT
+  INCOMPLETE
 }
 
 type ApplicationSubscriptionPayload {

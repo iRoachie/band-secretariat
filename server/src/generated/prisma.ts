@@ -255,6 +255,7 @@ enum ApplicationStatus {
   APPLIED
   ASSIGNED
   PASSED_OUT
+  INCOMPLETE
 }
 
 type ApplicationSubscriptionPayload {
@@ -1743,7 +1744,8 @@ export type ApplicationOrderByInput =   'id_ASC' |
 
 export type ApplicationStatus =   'APPLIED' |
   'ASSIGNED' |
-  'PASSED_OUT'
+  'PASSED_OUT' |
+  'INCOMPLETE'
 
 export type MinistryArea =   'AdventurerClubMember' |
   'AdventurerClubOfficer' |

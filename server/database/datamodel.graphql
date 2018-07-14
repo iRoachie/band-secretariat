@@ -18,6 +18,7 @@ enum ApplicationStatus {
   APPLIED
   ASSIGNED
   PASSED_OUT
+  INCOMPLETE
 }
 
 enum MinistryArea {
