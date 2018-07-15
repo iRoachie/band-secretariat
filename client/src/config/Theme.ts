@@ -7,6 +7,7 @@ const Theme = {
     passed_out: '#30DB64',
     incomplete: '#F53D3D',
   },
+  error: '#ff0202',
 }
 
 export default Theme

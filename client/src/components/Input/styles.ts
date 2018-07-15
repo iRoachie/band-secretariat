@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Theme } from '../../config'
 
 interface ChangeProps {
   error: boolean
@@ -15,7 +16,7 @@ const Label = styled.label.attrs({
     font-size var(--transitionSpeed) ease-in-out;
   font-size: 1.125rem;
 
-  ${({ error }: ChangeProps) => error && `color: #ff0202`};
+  ${({ error }: ChangeProps) => error && `color: ${Theme.error}`};
   ${({ hasValue }: ChangeProps) =>
     hasValue &&
     `
@@ -29,7 +30,6 @@ const Label = styled.label.attrs({
 const Container = styled.article.attrs({
   className: 'mb-6 relative',
 })`
-  --error: #ff0202;
   --transitionSpeed: 250ms;
 `
 
@@ -55,10 +55,10 @@ const Field = styled.input.attrs({
   ${({ error }: ChangeProps) =>
     error &&
     `
-    border-color: var(--error);
+    border-color: ${Theme.error};
 
   &:focus {
-    border-color: var(--error);
+    border-color: ${Theme.error};
   }
     `};
 `
