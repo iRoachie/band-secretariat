@@ -1,7 +1,22 @@
 import React from 'react'
-import { Page, Button, Breadcrumbs } from '../../components'
 
-class NewApplication extends React.Component<{}> {
+import { Page, Button, Breadcrumbs, Panel, Input } from '../../components'
+
+interface State {
+  firstName: string
+  lastName: string
+}
+
+class NewApplication extends React.Component<{}, State> {
+  state = {
+    firstName: '',
+    lastName: '',
+  }
+
+  updateValue = (data: Partial<State>) => {
+    this.setState(data as State)
+  }
+
   saveApplication = () => {
     //
   }
@@ -26,8 +41,30 @@ class NewApplication extends React.Component<{}> {
         }
       >
         <div className="row">
-          <div className="col-md-12">
-            <p>Yes</p>
+          <div className="col-md-6">
+            <Panel title="Personal">
+              <div className="row">
+                <div className="col-md-6">
+                  <Input
+                    label="First Name"
+                    value={this.state.firstName}
+                    onChangeText={firstName => this.updateValue({ firstName })}
+                  />
+                </div>
+                <div className="col-md-6">
+                  <Input
+                    label="Last Name"
+                    value={this.state.lastName}
+                    onChangeText={lastName => this.updateValue({ lastName })}
+                  />
+                </div>
+              </div>
+            </Panel>
+          </div>
+          <div className="col-md-6">
+            <Panel title="Contact">
+              <p>Yes</p>
+            </Panel>
           </div>
         </div>
       </Page>

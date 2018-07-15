@@ -9,7 +9,9 @@ const Breadcrumbs: React.SFC<Props> = ({ entries }) => (
     {entries.map(
       (a, index) =>
         index < entries.length - 1 ? (
-          <span className="text-primary-2">{a} / </span>
+          <span key={a} className="text-primary-2">
+            {a} /{' '}
+          </span>
         ) : (
           a
         )
