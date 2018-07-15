@@ -4,7 +4,7 @@ import { Query } from 'react-apollo'
 import Spinner from '@atlaskit/spinner'
 import { RouteComponentProps } from 'react-router-dom'
 
-import { Page, Button, ApplicationCard } from '../../components'
+import { Page, Button, ApplicationCard, Breadcrumbs } from '../../components'
 import { Application } from '../../../../server/src/generated/prisma'
 
 const GET_APPLICATIONS = gql`
@@ -42,7 +42,7 @@ class Applications extends React.Component<RouteComponentProps<{}>, State> {
       <Page
         renderHeader={
           <div className="block justify-between items-center sm:flex">
-            <h1>Applications</h1>
+            <Breadcrumbs entries={['Applications']} />
 
             <div className="mt-4 sm:mt-0">
               <Button

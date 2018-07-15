@@ -1,5 +1,5 @@
 import React from 'react'
-import { Page, Button } from '../../components'
+import { Page, Button, Breadcrumbs } from '../../components'
 
 class NewApplication extends React.Component<{}> {
   saveApplication = () => {
@@ -11,9 +11,7 @@ class NewApplication extends React.Component<{}> {
       <Page
         renderHeader={
           <div className="block justify-between items-center sm:flex">
-            <h1>
-              <span className="text-primary-2"> Applications /</span> New
-            </h1>
+            <Breadcrumbs entries={['Applications', 'New']} />
 
             <div className="mt-4 sm:mt-0">
               <Button
