@@ -2,6 +2,7 @@ import React from 'react'
 import gql from 'graphql-tag'
 import { Query } from 'react-apollo'
 import Spinner from '@atlaskit/spinner'
+import { RouteComponentProps } from 'react-router-dom'
 
 import { Page, Button, ApplicationCard } from '../../components'
 import { Application } from '../../../../server/src/generated/prisma'
@@ -27,17 +28,9 @@ interface State {
   search: string
 }
 
-class Applications extends React.Component<{}, State> {
-  state = {
-    search: '',
-  }
-
-  updateState = (search: string) => {
-    this.setState({ search })
-  }
-
-  addApplication = () => {
-    //
+class Applications extends React.Component<RouteComponentProps<{}>, State> {
+  newApplication = () => {
+    this.props.history.push('/applications/new')
   }
 
   filter = () => {
@@ -63,9 +56,9 @@ class Applications extends React.Component<{}, State> {
               <Button
                 appearance="primary"
                 iconBefore="ion-md-add"
-                onClick={this.addApplication}
+                onClick={this.newApplication}
               >
-                Add Application
+                New Application
               </Button>
             </div>
           </div>

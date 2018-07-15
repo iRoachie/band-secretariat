@@ -1,3 +1,4 @@
 import Applications from './Applications'
+import NewApplication from './NewApplication'
 
-export { Applications }
+export { Applications, NewApplication }

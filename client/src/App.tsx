@@ -1,9 +1,14 @@
 import React from 'react'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import {
+  BrowserRouter as Router,
+  Redirect,
+  Route,
+  Switch,
+} from 'react-router-dom'
 import { ApolloProvider } from 'react-apollo'
 
 import { Header } from './components'
-import { Applications } from './pages'
+import { Applications, NewApplication } from './pages'
 import client from './config/graphql'
 
 const App = () => (
@@ -13,7 +18,9 @@ const App = () => (
         <Header />
 
         <Switch>
+          <Redirect exact path="/" to="/applications" />
           <Route exact path="/applications" component={Applications} />
+          <Route exact path="/applications/new" component={NewApplication} />
         </Switch>
       </>
     </Router>
