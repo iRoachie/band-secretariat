@@ -46,7 +46,7 @@ export class Select extends React.Component<SelectProps> {
           error={hasError}
           onChange={({ target }) => this.select(target.value)}
         >
-          <option value="" disabled selected>
+          <option value="" disabled>
             {label}
           </option>
 
