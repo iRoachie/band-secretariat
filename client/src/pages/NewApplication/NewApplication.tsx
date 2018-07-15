@@ -10,18 +10,27 @@ import {
 } from '../../components'
 import countries from '../../data/countries'
 import { Value } from '../../types'
+import { configs } from '../../config'
+
+import { PhotoURL, FilePicker, FilePickerContainer } from './styles'
 
 interface State {
   firstName: string
   lastName: string
+  otherNames: string
+  nationality: string
   country: Value
+  photoURL: string
 }
 
 class NewApplication extends React.Component<{}, State> {
   state = {
     firstName: '',
     lastName: '',
+    otherNames: '',
+    nationality: '',
     country: '',
+    photoURL: configs.defaultAvatar,
   }
 
   updateValue = (data: Partial<State>) => {
@@ -30,6 +39,23 @@ class NewApplication extends React.Component<{}, State> {
 
   saveApplication = () => {
     //
+  }
+
+  triggerUpload = () => {
+    const input = document.getElementById('file-picker')
+    input!.click()
+  }
+
+  previewImage = (file: Blob) => {
+    if (file) {
+      const reader = new FileReader()
+
+      reader.onload = e => {
+        this.updateValue({ photoURL: e.target!.result })
+      }
+
+      reader.readAsDataURL(file)
+    }
   }
 
   render() {
@@ -52,41 +78,89 @@ class NewApplication extends React.Component<{}, State> {
         }
       >
         <div className="row">
-          <div className="col-md-6">
+          <div className="col-md-8">
             <Panel title="Personal">
               <div className="row">
-                <div className="col-md-6">
-                  <Input
-                    label="First Name"
-                    value={this.state.firstName}
-                    onChangeText={firstName => this.updateValue({ firstName })}
-                  />
-                </div>
-                <div className="col-md-6">
-                  <Input
-                    label="Last Name"
-                    value={this.state.lastName}
-                    onChangeText={lastName => this.updateValue({ lastName })}
-                  />
-                </div>
-              </div>
+                <div className="col-sm-4">
+                  <FilePickerContainer>
+                    <FilePicker
+                      type="file"
+                      id="file-picker"
+                      onChange={({ target }) =>
+                        this.previewImage(target.files![0])
+                      }
+                    />
 
-              <div className="row">
-                <div className="col-md-6">
-                  <Select
-                    label="Country"
-                    options={countries.map(a => ({
-                      label: a.name,
-                      value: a.code,
-                    }))}
-                    value={this.state.country}
-                    onChange={value => this.updateValue({ country: value })}
-                  />
+                    <button onClick={this.triggerUpload} className="w-full">
+                      <PhotoURL src={this.state.photoURL} alt="" />
+                    </button>
+                  </FilePickerContainer>
+                </div>
+
+                <div className="col-sm-8">
+                  <div className="row">
+                    <div className="col-md-6">
+                      <Input
+                        label="First Name"
+                        required
+                        value={this.state.firstName}
+                        onChangeText={firstName =>
+                          this.updateValue({ firstName })
+                        }
+                      />
+                    </div>
+                    <div className="col-md-6">
+                      <Input
+                        label="Last Name"
+                        required
+                        value={this.state.lastName}
+                        onChangeText={lastName =>
+                          this.updateValue({ lastName })
+                        }
+                      />
+                    </div>
+                  </div>
+
+                  <div className="row">
+                    <div className="col-md-12">
+                      <Input
+                        label="Other names"
+                        value={this.state.otherNames}
+                        onChangeText={otherNames =>
+                          this.updateValue({ otherNames })
+                        }
+                      />
+                    </div>
+                  </div>
+
+                  <div className="row">
+                    <div className="col-md-6">
+                      <Select
+                        label="Country"
+                        options={countries.map(a => ({
+                          label: a.name,
+                          value: a.code,
+                        }))}
+                        value={this.state.country}
+                        onChange={country => this.updateValue({ country })}
+                      />
+                    </div>
+
+                    <div className="col-md-6">
+                      <Input
+                        label="Nationality"
+                        value={this.state.nationality}
+                        onChangeText={nationality =>
+                          this.updateValue({ nationality })
+                        }
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
             </Panel>
           </div>
-          <div className="col-md-6">
+          <div className="col-md-4">
             <Panel title="Contact">
               <p>Yes</p>
             </Panel>
