@@ -17,7 +17,7 @@ const ApplicationCard: React.SFC<Props> = ({ application }) => (
   >
     <article className="rounded-sm mb-8">
       <div className="flex">
-        <Avatar src="https://randomuser.me/api/portraits/women/14.jpg" alt="" />
+        <Avatar src={application.photoURL} alt="" />
 
         <CardBody>
           <header className="flex justify-between items-start mb-4">
