@@ -1,16 +1,27 @@
 import React from 'react'
 
-import { Page, Button, Breadcrumbs, Panel, Input } from '../../components'
+import {
+  Page,
+  Button,
+  Breadcrumbs,
+  Panel,
+  Input,
+  Select,
+} from '../../components'
+import countries from '../../data/countries'
+import { Value } from '../../types'
 
 interface State {
   firstName: string
   lastName: string
+  country: Value
 }
 
 class NewApplication extends React.Component<{}, State> {
   state = {
     firstName: '',
     lastName: '',
+    country: '',
   }
 
   updateValue = (data: Partial<State>) => {
@@ -56,6 +67,20 @@ class NewApplication extends React.Component<{}, State> {
                     label="Last Name"
                     value={this.state.lastName}
                     onChangeText={lastName => this.updateValue({ lastName })}
+                  />
+                </div>
+              </div>
+
+              <div className="row">
+                <div className="col-md-6">
+                  <Select
+                    label="Country"
+                    options={countries.map(a => ({
+                      label: a.name,
+                      value: a.code,
+                    }))}
+                    value={this.state.country}
+                    onChange={value => this.updateValue({ country: value })}
                   />
                 </div>
               </div>

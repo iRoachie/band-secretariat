@@ -6,18 +6,20 @@ interface ChangeProps {
   hasValue: boolean
 }
 
+const transitionSpeed = '250ms'
+
 const Label = styled.label.attrs({
   className: 'pointer-events-none absolute z-10',
-})`
+})<ChangeProps>`
   color: rgba(var(--primary), 0.8);
   transform: translateX(0.825rem) translateY(-50%);
   top: 50%;
-  transition: top var(--transitionSpeed), transform var(--transitionSpeed),
-    font-size var(--transitionSpeed) ease-in-out;
+  transition: top ${transitionSpeed}, transform ${transitionSpeed},
+    font-size ${transitionSpeed} ease-in-out;
   font-size: 1.125rem;
 
-  ${({ error }: ChangeProps) => error && `color: ${Theme.error}`};
-  ${({ hasValue }: ChangeProps) =>
+  ${({ error }) => error && `color: ${Theme.error}`};
+  ${({ hasValue }) =>
     hasValue &&
     `
     top: 15%;
@@ -29,30 +31,30 @@ const Label = styled.label.attrs({
 
 const Container = styled.article.attrs({
   className: 'mb-6 relative',
-})`
-  --transitionSpeed: 250ms;
-`
+})``
 
 const Field = styled.input.attrs({
   className: 'relative w-full overflow-visible outline-none text-lg rounded',
-})`
-  padding: ${({ hasValue }: ChangeProps) =>
-    hasValue ? ' 1.65rem 0.825rem 0.65rem' : '1.125rem 0.825rem'};
+})<ChangeProps>`
+  padding: ${({ hasValue }) =>
+    hasValue ? '1.65rem 0.825rem 0.65rem' : '1.125rem 0.825rem'};
   border: 1.125px solid #cccccc;
-  transition: var(--transitionSpeed) border-color,
-    var(--transitionSpeed) box-shadow;
+  transition: ${transitionSpeed} border-color, ${transitionSpeed} box-shadow,
+    ${transitionSpeed} background-color;
+  background-color: ${({ hasValue }) => (hasValue ? '#fff' : ' #f8f8f8')};
 
   &:disabled {
-    background: #f7f7f7;
+    background-color: #f7f7f7;
     cursor: not-allowed;
     color: #9b9b9b;
   }
 
   &:focus {
     border-color: var(--primary);
+    background-color: #fff;
   }
 
-  ${({ error }: ChangeProps) =>
+  ${({ error }) =>
     error &&
     `
     border-color: ${Theme.error};
