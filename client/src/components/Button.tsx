@@ -13,7 +13,9 @@ const Container = styled.article`
   display: inline-block;
 `
 
-const Content = styled(ATButton)`
+const Content = styled(ATButton).attrs({
+  className: 'font-medium',
+})`
   font-family: inherit;
   background: ${(props: Props) =>
     props.appearance === 'primary' && Theme.primary};

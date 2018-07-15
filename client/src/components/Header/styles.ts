@@ -23,7 +23,7 @@ const HeaderRight = styled.ul.attrs({
 
 const NavItem = styled(NavLink).attrs({
   className:
-    'h-full inline-flex items-center relative pr-4 sm:pl-5 sm:pr-5 font-semibold',
+    'h-full inline-flex items-center relative pr-4 sm:pl-5 sm:pr-5 font-semibold text-lg',
 })`
   color: rgba(255, 255, 255, 0.56);
 
@@ -52,7 +52,7 @@ const NavItem = styled(NavLink).attrs({
 `
 
 const Account = styled.p.attrs({
-  className: 'font-semibold text-sm',
+  className: 'font-semibold text-md',
 })`
   color: rgba(0, 0, 0, 0.26);
 `
