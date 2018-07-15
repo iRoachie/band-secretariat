@@ -1,8 +1,9 @@
 import React from 'react'
-import { Page, Button, ApplicationCard } from '../../components'
-
 import gql from 'graphql-tag'
 import { Query } from 'react-apollo'
+import Spinner from '@atlaskit/spinner'
+
+import { Page, Button, ApplicationCard } from '../../components'
 import { Application } from '../../../../server/src/generated/prisma'
 
 const GET_APPLICATIONS = gql`
@@ -73,15 +74,23 @@ class Applications extends React.Component<{}, State> {
         <Query query={GET_APPLICATIONS}>
           {({ loading, error, data }) => {
             if (loading) {
-              return 'Loading...'
+              return (
+                <div className="text-center">
+                  <Spinner />
+                </div>
+              )
             }
 
             if (error) {
-              return `Error! ${error.message}`
+              return <p className="text-center">Error! {error.message}</p>
             }
 
             return (
               <div className="row">
+                {data.applications.length === 0 && (
+                  <p className="text-center">No Applications</p>
+                )}
+
                 {data.applications.map((a: Application) => (
                   <ApplicationCard key={a.id} application={a} />
                 ))}
