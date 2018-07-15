@@ -1,6 +1,6 @@
 import React, { ChangeEvent, InputHTMLAttributes } from 'react'
 
-import { Field, Label, Container } from './styles'
+import { Field, Label, Container, Required } from './styles'
 
 interface InputProps extends InputHTMLAttributes<any> {
   label?: string
@@ -40,7 +40,7 @@ export class Input extends React.Component<InputProps, InputState> {
   }
 
   render() {
-    const { label, errorMessage, onChangeText, ...rest } = this.props
+    const { label, errorMessage, onChangeText, required, ...rest } = this.props
 
     const hasValue = rest.value !== ''
     const hasError = errorMessage !== ''
@@ -60,7 +60,10 @@ export class Input extends React.Component<InputProps, InputState> {
           onBlur={this.blur}
           onChange={this.updateText}
           placeholder={label}
+          required={required}
         />
+
+        {required && <Required>*</Required>}
       </Container>
     )
   }

@@ -4,7 +4,16 @@ import { Theme } from '../../config'
 interface ChangeProps {
   error: boolean
   hasValue: boolean
+  required?: boolean
 }
+
+const Required = styled.span.attrs({
+  className: 'absolute text-2xl',
+})`
+  right: 0.625rem;
+  top: 1.4rem;
+  color: var(--primary);
+`
 
 const Label = styled.label.attrs({
   className: 'pointer-events-none absolute z-10 font-semibold text-primary-1',
@@ -32,6 +41,7 @@ const Field = styled.input.attrs({
   border-style: solid;
   transition: 250ms ease-in-out;
   border-color: ${({ error }) => (error ? 'var(--error)' : '#ccc')};
+  padding-right: ${({ required }) => (required ? '1.5rem' : '.8rem')}
 
   &:disabled {
     background-color: #f7f7f7;
@@ -44,4 +54,4 @@ const Field = styled.input.attrs({
   }
 `
 
-export { Label, Container, Field }
+export { Label, Container, Field, Required }
