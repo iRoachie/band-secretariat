@@ -6,27 +6,16 @@ interface ChangeProps {
   hasValue: boolean
 }
 
-const transitionSpeed = '250ms'
-
 const Label = styled.label.attrs({
-  className: 'pointer-events-none absolute z-10',
+  className: 'pointer-events-none absolute z-10 font-semibold text-primary-1',
 })<ChangeProps>`
-  color: rgba(var(--primary), 0.8);
-  transform: translateX(0.825rem) translateY(-50%);
-  top: 50%;
-  transition: top ${transitionSpeed}, transform ${transitionSpeed},
-    font-size ${transitionSpeed} ease-in-out;
-  font-size: 1.125rem;
-
+  left: 0.825rem;
+  top: 0.625rem;
+  transition: 200ms ease-in-out;
+  font-size: 0.825rem;
+  opacity: ${({ hasValue }) => (hasValue ? 1 : 0)};
   ${({ error }) => error && `color: ${Theme.error}`};
-  ${({ hasValue }) =>
-    hasValue &&
-    `
-    top: 15%;
-    transform: translateX(0.825rem) translateY(0);
-    font-size: 0.825rem;
-    font-weight: 500;
-    `};
+  -webkit-font-smoothing: subpixel-antialiased;
 `
 
 const Container = styled.article.attrs({
@@ -34,14 +23,15 @@ const Container = styled.article.attrs({
 })``
 
 const Field = styled.input.attrs({
-  className: 'relative w-full overflow-visible outline-none text-lg rounded',
+  className:
+    'relative w-full overflow-visible outline-none text-lg rounded bg-white',
 })<ChangeProps>`
   padding: ${({ hasValue }) =>
-    hasValue ? '1.65rem 0.825rem 0.65rem' : '1.125rem 0.825rem'};
-  border: 1.125px solid #cccccc;
-  transition: ${transitionSpeed} border-color, ${transitionSpeed} box-shadow,
-    ${transitionSpeed} background-color;
-  background-color: ${({ hasValue }) => (hasValue ? '#fff' : ' #f8f8f8')};
+    hasValue ? '1.65rem 0.8rem 0.6rem' : '1.125rem 0.8rem'};
+  border-width: 1.125px;
+  border-style: solid;
+  transition: 250ms ease-in-out;
+  border-color: ${({ error }) => (error ? 'var(--error)' : '#ccc')};
 
   &:disabled {
     background-color: #f7f7f7;
@@ -50,19 +40,8 @@ const Field = styled.input.attrs({
   }
 
   &:focus {
-    border-color: var(--primary);
-    background-color: #fff;
+    border-color: ${({ error }) => (error ? 'var(--error)' : 'var(--primary)')};
   }
-
-  ${({ error }) =>
-    error &&
-    `
-    border-color: ${Theme.error};
-
-  &:focus {
-    border-color: ${Theme.error};
-  }
-    `};
 `
 
 export { Label, Container, Field }

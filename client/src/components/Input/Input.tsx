@@ -42,13 +42,13 @@ export class Input extends React.Component<InputProps, InputState> {
   render() {
     const { label, errorMessage, onChangeText, ...rest } = this.props
 
-    const hasValue = this.state.focused || rest.value !== ''
+    const hasValue = rest.value !== ''
     const hasError = errorMessage !== ''
 
     return (
       <Container>
         <Label hasValue={hasValue} error={hasError}>
-          {errorMessage || label}
+          {label}
         </Label>
 
         <Field
@@ -59,6 +59,7 @@ export class Input extends React.Component<InputProps, InputState> {
           onFocus={this.focus}
           onBlur={this.blur}
           onChange={this.updateText}
+          placeholder={label}
         />
       </Container>
     )

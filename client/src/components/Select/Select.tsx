@@ -17,38 +17,21 @@ interface SelectProps {
   onChange(value: Value): void
 }
 
-interface InputState {
-  focused: boolean
-}
-
-export class Input extends React.Component<SelectProps, InputState> {
+export class Select extends React.Component<SelectProps> {
   static defaultProps: Partial<SelectProps> = {
     errorMessage: '',
     value: '',
     onChange: () => null,
   }
 
-  state = {
-    focused: false,
-  }
-
-  focus = () => {
-    this.setState({ focused: true })
-  }
-
-  blur = () => {
-    this.setState({ focused: false })
-  }
-
   select = (value: Value) => {
-    this.blur()
     this.props.onChange(value)
   }
 
   render() {
     const { label, options, errorMessage, ...rest } = this.props
 
-    const hasValue = this.state.focused || rest.value !== ''
+    const hasValue = rest.value !== ''
     const hasError = errorMessage !== ''
 
     return (
@@ -61,11 +44,12 @@ export class Input extends React.Component<SelectProps, InputState> {
           {...rest}
           hasValue={hasValue}
           error={hasError}
-          onFocus={this.focus}
-          onBlur={this.blur}
           onChange={({ target }) => this.select(target.value)}
         >
-          <option />
+          <option value="" disabled selected>
+            {label}
+          </option>
+
           {options.map(a => (
             <option key={a.value} value={a.value}>
               {a.label}
@@ -79,4 +63,4 @@ export class Input extends React.Component<SelectProps, InputState> {
   }
 }
 
-export default Input
+export default Select
