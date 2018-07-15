@@ -22,5 +22,6 @@
       ]
     },
     "jsdoc-format": false
-  }
+  },
+  "defaultSeverity": "warn"
 }
