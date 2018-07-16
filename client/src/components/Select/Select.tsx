@@ -32,7 +32,7 @@ export class Select extends React.Component<SelectProps> {
     const { label, options, errorMessage, ...rest } = this.props
 
     const hasValue = rest.value !== ''
-    const hasError = errorMessage !== ''
+    const hasError = !!errorMessage
 
     return (
       <Container>

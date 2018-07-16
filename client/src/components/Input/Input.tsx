@@ -2,7 +2,7 @@ import React, { ChangeEvent, InputHTMLAttributes } from 'react'
 
 import { Field, Label, Container, Required } from './styles'
 
-interface InputProps extends InputHTMLAttributes<any> {
+export interface InputProps extends InputHTMLAttributes<any> {
   label?: string
   errorMessage?: string
   onChangeText?(value: string): void
@@ -23,14 +23,6 @@ export class Input extends React.Component<InputProps, InputState> {
     focused: false,
   }
 
-  focus = () => {
-    this.setState({ focused: true })
-  }
-
-  blur = () => {
-    this.setState({ focused: false })
-  }
-
   clear = () => {
     this.props.onChangeText!('')
   }
@@ -42,13 +34,13 @@ export class Input extends React.Component<InputProps, InputState> {
   render() {
     const { label, errorMessage, onChangeText, required, ...rest } = this.props
 
-    const hasValue = rest.value !== ''
-    const hasError = errorMessage !== ''
+    const hasError = !!errorMessage
+    const hasValue = rest.value !== '' || hasError
 
     return (
       <Container>
         <Label hasValue={hasValue} error={hasError}>
-          {label}
+          {errorMessage || label}
         </Label>
 
         <Field
@@ -56,8 +48,6 @@ export class Input extends React.Component<InputProps, InputState> {
           {...rest}
           hasValue={hasValue}
           error={hasError}
-          onFocus={this.focus}
-          onBlur={this.blur}
           onChange={this.updateText}
           placeholder={label}
           required={required}

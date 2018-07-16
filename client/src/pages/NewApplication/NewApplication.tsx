@@ -7,6 +7,7 @@ import {
   Panel,
   Input,
   Select,
+  DatePicker,
 } from '../../components'
 import countries from '../../data/countries'
 import { Value } from '../../types'
@@ -15,6 +16,7 @@ import { configs } from '../../config'
 import { PhotoURL, FilePicker, FilePickerContainer } from './styles'
 
 interface State {
+  applicationDate: Date | null
   firstName: string
   lastName: string
   otherNames: string
@@ -25,6 +27,7 @@ interface State {
 
 class NewApplication extends React.Component<{}, State> {
   state = {
+    applicationDate: null,
     firstName: '',
     lastName: '',
     otherNames: '',
@@ -163,6 +166,16 @@ class NewApplication extends React.Component<{}, State> {
           <div className="col-md-4">
             <Panel title="Contact">
               <p>Yes</p>
+            </Panel>
+
+            <Panel title="Band">
+              <DatePicker
+                label="Application Date"
+                value={this.state.applicationDate}
+                onChange={applicationDate =>
+                  this.updateValue({ applicationDate })
+                }
+              />
             </Panel>
           </div>
         </div>

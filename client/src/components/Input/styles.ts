@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { Theme } from '../../config'
 
 interface ChangeProps {
   error: boolean
@@ -16,14 +15,14 @@ const Required = styled.span.attrs({
 `
 
 const Label = styled.label.attrs({
-  className: 'pointer-events-none absolute z-10 font-semibold text-primary-1',
+  className: 'pointer-events-none absolute z-10 font-semibold',
 })<ChangeProps>`
   left: 0.825rem;
   top: 0.625rem;
   transition: 200ms ease-in-out;
   font-size: 0.825rem;
   opacity: ${({ hasValue }) => (hasValue ? 1 : 0)};
-  ${({ error }) => error && `color: ${Theme.error}`};
+  color: ${({ error }) => (error ? 'var(--error)' : 'var(--text-primary-1)')};
   -webkit-font-smoothing: subpixel-antialiased;
 `
 
@@ -41,7 +40,8 @@ const Field = styled.input.attrs({
   border-style: solid;
   transition: 250ms ease-in-out;
   border-color: ${({ error }) => (error ? 'var(--error)' : '#ccc')};
-  padding-right: ${({ required }) => (required ? '1.5rem' : '.8rem')}
+  padding-right: ${({ required }) => (required ? '1.5rem' : '.8rem')};
+  height: 3.7rem;
 
   &:disabled {
     background-color: #f7f7f7;
