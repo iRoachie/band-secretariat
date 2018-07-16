@@ -14,7 +14,7 @@ interface ChangeProps {
 const Picker = styled(DateInput as any).attrs({
   className: 'block',
 })<ChangeProps>`
-  & > span {
+  .bp3-popover-target {
     display: block;
   }
 
