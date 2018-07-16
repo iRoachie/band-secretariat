@@ -32,7 +32,7 @@ const Container = styled.article.attrs({
 
 const Field = styled.input.attrs({
   className:
-    'relative w-full overflow-visible outline-none text-lg rounded bg-white',
+    'relative w-full overflow-visible outline-none text-base rounded bg-white',
 })<ChangeProps>`
   padding: ${({ hasValue }) =>
     hasValue ? '1.65rem 0.8rem 0.6rem' : '1.125rem 0.8rem'};

@@ -20,7 +20,7 @@ const Picker = styled(DateInput as any).attrs({
 
   input {
     height: 3.7rem;
-    font-size: 1.125rem;
+    font-size: 1rem;
     display: block;
     box-shadow: none;
     border-width: 1.125px;

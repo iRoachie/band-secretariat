@@ -19,6 +19,7 @@ const Content = styled(ATButton).attrs({
   font-family: inherit;
   background: ${(props: Props) =>
     props.appearance === 'primary' && Theme.primary};
+  font-size: 1rem;
 
   &:hover {
     background: ${(props: Props) =>
