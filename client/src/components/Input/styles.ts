@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 interface ChangeProps {
   error: boolean
@@ -15,12 +15,15 @@ const Required = styled.span.attrs({
 `
 
 const Label = styled.label.attrs({
-  className: 'pointer-events-none absolute z-10 font-semibold',
+  className: 'pointer-events-none absolute z-10 font-semibold bg-white',
 })<ChangeProps>`
   left: 0.825rem;
-  top: 0.625rem;
+  top: 1px;
+  padding-top: 0.625rem;
+  padding-bottom: 0.125rem;
   transition: 200ms ease-in-out;
   font-size: 0.825rem;
+  width: calc(100% - 0.825rem - 0.825rem);
   opacity: ${({ hasValue }) => (hasValue ? 1 : 0)};
   color: ${({ error }) => (error ? 'var(--error)' : 'var(--text-primary-1)')};
   -webkit-font-smoothing: subpixel-antialiased;
@@ -30,10 +33,7 @@ const Container = styled.article.attrs({
   className: 'mb-6 relative',
 })``
 
-const Field = styled.input.attrs({
-  className:
-    'relative w-full overflow-visible outline-none text-base rounded bg-white',
-})<ChangeProps>`
+const InputStyles = css<ChangeProps>`
   padding: ${({ hasValue }) =>
     hasValue ? '1.65rem 0.8rem 0.6rem' : '1.125rem 0.8rem'};
   border-width: 1.125px;
@@ -41,7 +41,7 @@ const Field = styled.input.attrs({
   transition: 250ms ease-in-out;
   border-color: ${({ error }) => (error ? 'var(--error)' : '#ccc')};
   padding-right: ${({ required }) => (required ? '1.5rem' : '.8rem')};
-  height: 3.7rem;
+  min-height: 3.7rem;
 
   &:disabled {
     background-color: #f7f7f7;
@@ -54,4 +54,16 @@ const Field = styled.input.attrs({
   }
 `
 
-export { Label, Container, Field, Required }
+const Field = styled.input.attrs({
+  className: 'relative w-full outline-none text-base rounded bg-white',
+})<ChangeProps>`
+  ${InputStyles};
+`
+
+const TextAreaField = styled.textarea.attrs({
+  className: 'relative w-full outline-none text-base rounded bg-white',
+})`
+  ${InputStyles};
+`
+
+export { Label, Container, Field, TextAreaField, Required }

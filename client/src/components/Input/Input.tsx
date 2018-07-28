@@ -1,9 +1,16 @@
-import React, { ChangeEvent, InputHTMLAttributes } from 'react'
+import React, {
+  ChangeEvent,
+  InputHTMLAttributes,
+  TextareaHTMLAttributes,
+} from 'react'
 
-import { Field, Label, Container, Required } from './styles'
+import { Field, TextAreaField, Label, Container, Required } from './styles'
 
-export interface InputProps extends InputHTMLAttributes<any> {
+export interface InputProps
+  extends InputHTMLAttributes<any>,
+    TextareaHTMLAttributes<any> {
   label?: string
+  textarea?: boolean
   errorMessage?: string
   onChangeText?(value: string): void
 }
@@ -16,6 +23,7 @@ export class Input extends React.Component<InputProps, InputState> {
   static defaultProps: InputProps = {
     errorMessage: '',
     value: '',
+    textarea: false,
     onChangeText: () => null,
   }
 
@@ -32,10 +40,19 @@ export class Input extends React.Component<InputProps, InputState> {
   }
 
   render() {
-    const { label, errorMessage, onChangeText, required, ...rest } = this.props
+    const {
+      label,
+      errorMessage,
+      onChangeText,
+      required,
+      textarea,
+      ...rest
+    } = this.props
 
     const hasError = !!errorMessage
     const hasValue = rest.value !== '' || hasError
+
+    const FieldType = textarea ? TextAreaField : Field
 
     return (
       <Container>
@@ -43,7 +60,7 @@ export class Input extends React.Component<InputProps, InputState> {
           {errorMessage || label}
         </Label>
 
-        <Field
+        <FieldType
           type="text"
           {...rest}
           hasValue={hasValue}
