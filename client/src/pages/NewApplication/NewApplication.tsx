@@ -23,6 +23,10 @@ interface State {
   nationality: string
   country: Value
   photoURL: string
+  email: string
+  tel: string
+  cell: string
+  address: string
 }
 
 class NewApplication extends React.Component<{}, State> {
@@ -34,6 +38,10 @@ class NewApplication extends React.Component<{}, State> {
     nationality: '',
     country: '',
     photoURL: configs.defaultAvatar,
+    email: '',
+    tel: '',
+    cell: '',
+    address: '',
   }
 
   updateValue = (data: Partial<State>) => {
@@ -165,7 +173,32 @@ class NewApplication extends React.Component<{}, State> {
           </div>
           <div className="col-md-4">
             <Panel title="Contact">
-              <p>Yes</p>
+              <Input
+                label="Telephone"
+                type="tel"
+                required
+                value={this.state.tel}
+                onChangeText={tel => this.updateValue({ tel })}
+              />
+              <Input
+                label="Cell"
+                type="tel"
+                value={this.state.cell}
+                onChangeText={cell => this.updateValue({ cell })}
+              />
+              <Input
+                label="Email"
+                type="email"
+                value={this.state.email}
+                onChangeText={email => this.updateValue({ email })}
+              />
+              <Input
+                label="Address"
+                textarea
+                value={this.state.address}
+                rows={5}
+                onChangeText={address => this.updateValue({ address })}
+              />
             </Panel>
 
             <Panel title="Band">
