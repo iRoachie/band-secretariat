@@ -9,6 +9,7 @@
   font-size: 15px;
   color: rgba(0, 0, 0, 0.87);
   --primary: #009688;
+  --primary-hover: #21c1b2;
   --error: #ff0202;
   --text-primary-1: rgba(0, 0, 0, 0.87);
   --text-primary-2: rgba(0, 0, 0, 0.56);
@@ -88,4 +89,26 @@ a {
 
 ul {
   margin-bottom: 0;
+}
+
+.ant-btn {
+  border-radius: 3px;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.ant-btn-primary,
+.ant-btn-primary:focus {
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+
+.ant-btn-primary:active {
+  background-color: #16897e;
+  border-color: #16897e;
+}
+
+.ant-btn-primary:hover {
+  background-color: var(--primary-hover);
+  border-color: var(--primary-hover);
 }

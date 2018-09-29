@@ -1,16 +1,9 @@
 import React from 'react'
-import { DatePicker, Upload, Icon } from 'antd'
+import { Button, DatePicker, Upload, Icon } from 'antd'
 import { UploadChangeParam } from 'antd/lib/upload/interface'
 import styled from 'styled-components'
 
-import {
-  Page,
-  Button,
-  Breadcrumbs,
-  Panel,
-  Input,
-  Select,
-} from '../../components'
+import { Page, Breadcrumbs, Panel, Input, Select } from '../../components'
 import countries from '../../data/countries'
 import { Value } from '../../types'
 
@@ -77,11 +70,8 @@ class NewApplication extends React.Component<{}, State> {
             <Breadcrumbs entries={['Applications', 'New']} />
 
             <div className="mt-4 sm:mt-0">
-              <Button
-                appearance="primary"
-                iconBefore="ion-md-checkbox"
-                onClick={this.saveApplication}
-              >
+              <Button type="primary" onClick={this.saveApplication}>
+                <Icon type="check-square" theme="filled" />
                 Save Application
               </Button>
             </div>

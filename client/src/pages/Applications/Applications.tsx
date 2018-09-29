@@ -1,10 +1,10 @@
 import React from 'react'
 import gql from 'graphql-tag'
 import { Query } from 'react-apollo'
-import { Spin, Icon } from 'antd'
+import { Button, Spin, Icon } from 'antd'
 import { RouteComponentProps } from 'react-router-dom'
 
-import { Page, Button, ApplicationCard, Breadcrumbs } from '../../components'
+import { Page, ApplicationCard, Breadcrumbs } from '../../components'
 import { Application } from '../../../../server/src/generated/prisma'
 
 const GET_APPLICATIONS = gql`
@@ -45,19 +45,13 @@ class Applications extends React.Component<RouteComponentProps<{}>, State> {
             <Breadcrumbs entries={['Applications']} />
 
             <div className="mt-4 sm:mt-0">
-              <Button
-                className="mr-4"
-                iconAfter="ion-md-funnel"
-                onClick={this.filter}
-              >
+              <Button className="mr-4" onClick={this.filter}>
                 Filter
+                <Icon type="filter" />
               </Button>
 
-              <Button
-                appearance="primary"
-                iconBefore="ion-md-add"
-                onClick={this.newApplication}
-              >
+              <Button type="primary" onClick={this.newApplication}>
+                <Icon type="plus" />
                 New Application
               </Button>
             </div>
