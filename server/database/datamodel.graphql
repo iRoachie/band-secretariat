@@ -64,7 +64,7 @@ type Application {
   club: String
   church: String
   churchPosition: String
-  minstryArea: MinistryArea
+  ministryAreas: [MinistryArea]
   interestedInstruments: [String!]!
   reason: String
   status: ApplicationStatus! @default(value: "APPLIED")

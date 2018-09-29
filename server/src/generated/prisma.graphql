@@ -1,5 +1,5 @@
 # source: http://localhost:4466
-# timestamp: Sat Sep 29 2018 04:15:34 GMT-0400 (AST)
+# timestamp: Sat Sep 29 2018 18:23:58 GMT-0400 (AST)
 
 type AggregateApplication {
   count: Int!
@@ -36,7 +36,7 @@ type Application implements Node {
   club: String
   church: String
   churchPosition: String
-  minstryArea: MinistryArea
+  ministryAreas: [MinistryArea!]!
   interestedInstruments: [String!]!
   reason: String
   status: ApplicationStatus!
@@ -77,15 +77,19 @@ input ApplicationCreateInput {
   club: String
   church: String
   churchPosition: String
-  minstryArea: MinistryArea
   reason: String
   status: ApplicationStatus
+  ministryAreas: ApplicationCreateministryAreasInput
   interestedInstruments: ApplicationCreateinterestedInstrumentsInput
   phone: PhoneNumberCreateManyInput
 }
 
 input ApplicationCreateinterestedInstrumentsInput {
   set: [String!]
+}
+
+input ApplicationCreateministryAreasInput {
+  set: [MinistryArea!]
 }
 
 """An edge in a connection."""
@@ -148,8 +152,6 @@ enum ApplicationOrderByInput {
   church_DESC
   churchPosition_ASC
   churchPosition_DESC
-  minstryArea_ASC
-  minstryArea_DESC
   reason_ASC
   reason_DESC
   status_ASC
@@ -186,7 +188,7 @@ type ApplicationPreviousValues {
   club: String
   church: String
   churchPosition: String
-  minstryArea: MinistryArea
+  ministryAreas: [MinistryArea!]!
   interestedInstruments: [String!]!
   reason: String
   status: ApplicationStatus!
@@ -263,15 +265,19 @@ input ApplicationUpdateInput {
   club: String
   church: String
   churchPosition: String
-  minstryArea: MinistryArea
   reason: String
   status: ApplicationStatus
+  ministryAreas: ApplicationUpdateministryAreasInput
   interestedInstruments: ApplicationUpdateinterestedInstrumentsInput
   phone: PhoneNumberUpdateManyInput
 }
 
 input ApplicationUpdateinterestedInstrumentsInput {
   set: [String!]
+}
+
+input ApplicationUpdateministryAreasInput {
+  set: [MinistryArea!]
 }
 
 input ApplicationWhereInput {
@@ -1187,16 +1193,6 @@ input ApplicationWhereInput {
 
   """All values not ending with the given string."""
   churchPosition_not_ends_with: String
-  minstryArea: MinistryArea
-
-  """All values that are not equal to given value."""
-  minstryArea_not: MinistryArea
-
-  """All values that are contained in given list."""
-  minstryArea_in: [MinistryArea!]
-
-  """All values that are not contained in given list."""
-  minstryArea_not_in: [MinistryArea!]
   reason: String
 
   """All values that are not equal to given value."""
