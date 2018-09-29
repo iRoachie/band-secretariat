@@ -9,7 +9,7 @@ const Content = styled.section.attrs({
 `
 
 const Title = styled.h4.attrs({
-  className: 'font-semibold uppercase mb-8',
+  className: 'font-semibold uppercase mb-4',
 })``
 
 interface Props {

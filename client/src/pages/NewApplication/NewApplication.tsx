@@ -1,41 +1,30 @@
 import React from 'react'
-import { Button, DatePicker, Upload, Icon } from 'antd'
+import { Button, Upload, Icon, Form } from 'antd'
 import { UploadChangeParam } from 'antd/lib/upload/interface'
+import { FormComponentProps } from 'antd/lib/form'
 import styled from 'styled-components'
 
-import { Page, Breadcrumbs, Panel, Input, Select } from '../../components'
+import {
+  Page,
+  Breadcrumbs,
+  Panel,
+  DatePicker,
+  Select,
+  SelectOption,
+  Input,
+  InputTextArea,
+} from '../../components'
 import countries from '../../data/countries'
-import { Value } from '../../types'
 
-import { Moment } from 'moment'
+const FormItem = Form.Item
 
 interface State {
-  applicationDate: Moment | undefined
-  firstName: string
-  lastName: string
-  otherNames: string
-  nationality: string
-  country: Value
   photoURL: string
-  email: string
-  tel: string
-  cell: string
-  address: string
 }
 
-class NewApplication extends React.Component<{}, State> {
+class NewApplication extends React.Component<FormComponentProps, State> {
   state = {
-    applicationDate: undefined,
-    firstName: '',
-    lastName: '',
-    otherNames: '',
-    nationality: '',
-    country: '',
     photoURL: '',
-    email: '',
-    tel: '',
-    cell: '',
-    address: '',
   }
 
   updateValue = (data: Partial<State>) => {
@@ -44,11 +33,6 @@ class NewApplication extends React.Component<{}, State> {
 
   saveApplication = () => {
     //
-  }
-
-  triggerUpload = () => {
-    const input = document.getElementById('file-picker')
-    input!.click()
   }
 
   previewImage = (info: UploadChangeParam) => {
@@ -60,153 +44,182 @@ class NewApplication extends React.Component<{}, State> {
     reader.readAsDataURL(info.file.originFileObj!)
   }
 
+  submitHandler = (event: React.SyntheticEvent) => {
+    event.preventDefault()
+
+    this.props.form.validateFields((err: string, value: any) => {
+      //
+    })
+  }
+
   render() {
     const { photoURL } = this.state
+    const { getFieldDecorator } = this.props.form
 
     return (
-      <Page
-        renderHeader={
-          <div className="block justify-between items-center sm:flex">
-            <Breadcrumbs entries={['Applications', 'New']} />
+      <Form onSubmit={this.submitHandler}>
+        <Page
+          renderHeader={
+            <div className="block justify-between items-center sm:flex">
+              <Breadcrumbs entries={['Applications', 'New']} />
 
-            <div className="mt-4 sm:mt-0">
-              <Button type="primary" onClick={this.saveApplication}>
-                <Icon type="check-square" theme="filled" />
-                Save Application
-              </Button>
-            </div>
-          </div>
-        }
-      >
-        <div className="row">
-          <div className="col-md-8">
-            <Panel title="Personal">
-              <div className="row flex flex-col sm:flex-row px-4">
-                <FilePicker
-                  name="avatar"
-                  listType="picture-card"
-                  showUploadList={false}
-                  onChange={this.previewImage}
-                  customRequest={() => null}
-                  style={{ flex: 1 }}
+              <div className="mt-4 sm:mt-0">
+                <Button
+                  type="primary"
+                  htmlType="submit"
+                  onClick={this.saveApplication}
                 >
-                  {photoURL ? (
-                    <img src={photoURL} alt="avatar" />
-                  ) : (
-                    <div>
-                      <Icon type="camera" />
-                      <div className="ant-upload-text">Upload Photo</div>
-                    </div>
-                  )}
-                </FilePicker>
+                  <Icon
+                    component={() => (
+                      <i className="ion-md-checkbox" style={{ fontSize: 20 }} />
+                    )}
+                  />
+                  Save Application
+                </Button>
+              </div>
+            </div>
+          }
+        >
+          <div className="row">
+            <div className="col-md-8">
+              <Panel title="Personal">
+                <div className="row flex flex-col sm:flex-row px-4">
+                  <FilePicker
+                    name="avatar"
+                    listType="picture-card"
+                    showUploadList={false}
+                    onChange={this.previewImage}
+                    customRequest={() => null}
+                    style={{ flex: 1 }}
+                  >
+                    {photoURL ? (
+                      <img src={photoURL} alt="avatar" />
+                    ) : (
+                      <div>
+                        <Icon type="camera" />
+                        <div className="ant-upload-text">Upload Photo</div>
+                      </div>
+                    )}
+                  </FilePicker>
 
-                <div className="flex-1 sm:pl-4 mt-4 sm:mt-0">
-                  <div className="row">
-                    <div className="col-md-6">
-                      <Input
-                        label="First Name"
-                        required
-                        value={this.state.firstName}
-                        onChangeText={firstName =>
-                          this.updateValue({ firstName })
-                        }
-                      />
-                    </div>
-                    <div className="col-md-6">
-                      <Input
-                        label="Last Name"
-                        required
-                        value={this.state.lastName}
-                        onChangeText={lastName =>
-                          this.updateValue({ lastName })
-                        }
-                      />
-                    </div>
-                  </div>
-
-                  <div className="row">
-                    <div className="col-md-12">
-                      <Input
-                        label="Other names"
-                        value={this.state.otherNames}
-                        onChangeText={otherNames =>
-                          this.updateValue({ otherNames })
-                        }
-                      />
-                    </div>
-                  </div>
-
-                  <div className="row">
-                    <div className="col-md-6">
-                      <Select
-                        label="Country"
-                        options={countries.map(a => ({
-                          label: a.name,
-                          value: a.code,
-                        }))}
-                        value={this.state.country}
-                        onChange={country => this.updateValue({ country })}
-                      />
+                  <div className="flex-1 sm:pl-4 mt-4 sm:mt-0">
+                    <div className="row">
+                      <div className="col-md-6">
+                        <FormItem label="First Name" required>
+                          {getFieldDecorator('firstName', {
+                            rules: [
+                              {
+                                required: true,
+                                message: 'Please enter First Name',
+                              },
+                            ],
+                          })(<Input />)}
+                        </FormItem>
+                      </div>
+                      <div className="col-md-6">
+                        <FormItem label="Last Name" required>
+                          {getFieldDecorator('lastName', {
+                            rules: [
+                              {
+                                required: true,
+                                message: 'Please enter Last Name',
+                              },
+                            ],
+                          })(<Input />)}
+                        </FormItem>
+                      </div>
                     </div>
 
-                    <div className="col-md-6">
-                      <Input
-                        label="Nationality"
-                        value={this.state.nationality}
-                        onChangeText={nationality =>
-                          this.updateValue({ nationality })
-                        }
-                      />
+                    <div className="row">
+                      <div className="col-md-12">
+                        <FormItem label="Other names">
+                          {getFieldDecorator('otherNames')(<Input />)}
+                        </FormItem>
+                      </div>
+                    </div>
+
+                    <div className="row">
+                      <div className="col-md-6">
+                        <FormItem label="Country">
+                          {getFieldDecorator('country')(
+                            <Select
+                              showSearch
+                              filterOption={(input, option) =>
+                                option.props
+                                  .children!.toString()
+                                  .toLowerCase()
+                                  .includes(input.toLowerCase())
+                              }
+                            >
+                              {countries.map(a => (
+                                <SelectOption key={a.code} value={a.code}>
+                                  {a.name}
+                                </SelectOption>
+                              ))}
+                            </Select>
+                          )}
+                        </FormItem>
+                      </div>
+
+                      <div className="col-md-6">
+                        <FormItem label="Nationality">
+                          {getFieldDecorator('nationality')(<Input />)}
+                        </FormItem>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </Panel>
-          </div>
-          <div className="col-md-4">
-            <Panel title="Contact">
-              <Input
-                label="Telephone"
-                type="tel"
-                required
-                value={this.state.tel}
-                onChangeText={tel => this.updateValue({ tel })}
-              />
-              <Input
-                label="Cell"
-                type="tel"
-                value={this.state.cell}
-                onChangeText={cell => this.updateValue({ cell })}
-              />
-              <Input
-                label="Email"
-                type="email"
-                value={this.state.email}
-                onChangeText={email => this.updateValue({ email })}
-              />
-              <Input
-                label="Address"
-                textarea
-                value={this.state.address}
-                rows={5}
-                onChangeText={address => this.updateValue({ address })}
-              />
-            </Panel>
+              </Panel>
+            </div>
+            <div className="col-md-4">
+              <Panel title="Contact">
+                <FormItem label="Telephone" required>
+                  {getFieldDecorator('tel', {
+                    rules: [
+                      {
+                        required: true,
+                        message: 'Please enter contact number',
+                      },
+                    ],
+                  })(<Input />)}
+                </FormItem>
 
-            <Panel title="Band">
-              <DatePicker
-                style={{ width: '100%' }}
-                placeholder="Application Date"
-                size="large"
-                value={this.state.applicationDate}
-                onChange={applicationDate =>
-                  this.updateValue({ applicationDate })
-                }
-              />
-            </Panel>
+                <FormItem label="Cell">
+                  {getFieldDecorator('cell')(<Input />)}
+                </FormItem>
+
+                <FormItem label="Email">
+                  {getFieldDecorator('email', {
+                    rules: [
+                      {
+                        type: 'email',
+                        message: 'Enter a valid email address',
+                      },
+                    ],
+                  })(<Input />)}
+                </FormItem>
+
+                <FormItem label="Address">
+                  {getFieldDecorator('address')(<InputTextArea />)}
+                </FormItem>
+              </Panel>
+
+              <Panel title="Band">
+                <FormItem label="Application Date" required>
+                  {getFieldDecorator('applicationDate', {
+                    rules: [
+                      {
+                        required: true,
+                        message: 'Enter application date',
+                      },
+                    ],
+                  })(<DatePicker />)}
+                </FormItem>
+              </Panel>
+            </div>
           </div>
-        </div>
-      </Page>
+        </Page>
+      </Form>
     )
   }
 }
@@ -225,4 +238,4 @@ const FilePicker = styled(Upload)`
   }
 `
 
-export default NewApplication
+export default Form.create()(NewApplication)
