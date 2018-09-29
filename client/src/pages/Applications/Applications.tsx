@@ -1,7 +1,7 @@
 import React from 'react'
 import gql from 'graphql-tag'
 import { Query } from 'react-apollo'
-import Spinner from '@atlaskit/spinner'
+import { Spin, Icon } from 'antd'
 import { RouteComponentProps } from 'react-router-dom'
 
 import { Page, Button, ApplicationCard, Breadcrumbs } from '../../components'
@@ -69,7 +69,11 @@ class Applications extends React.Component<RouteComponentProps<{}>, State> {
             if (loading) {
               return (
                 <div className="text-center">
-                  <Spinner />
+                  <Spin
+                    indicator={
+                      <Icon type="loading" style={{ fontSize: 24 }} spin />
+                    }
+                  />
                 </div>
               )
             }

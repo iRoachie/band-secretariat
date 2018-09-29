@@ -3,7 +3,6 @@ declare module '*.png'
 declare module '*.jpg'
 
 declare module '@atlaskit/button'
-declare module '@atlaskit/spinner'
 
 declare var process: {
   env: {
