@@ -6,7 +6,6 @@ import Breadcrumbs from './Breadcrumbs'
 import Panel from './Panel'
 import Input from './Input'
 import Select from './Select'
-import DatePicker from './DatePicker'
 
 export {
   Header,
@@ -16,6 +15,5 @@ export {
   Breadcrumbs,
   Panel,
   Input,
-  DatePicker,
   Select,
 }

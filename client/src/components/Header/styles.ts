@@ -52,7 +52,7 @@ const NavItem = styled(NavLink).attrs({
 `
 
 const Account = styled.p.attrs({
-  className: 'font-semibold text-md',
+  className: 'font-semibold text-md mb-0',
 })`
   color: rgba(0, 0, 0, 0.26);
 `

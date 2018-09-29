@@ -5,7 +5,7 @@ interface Props {
 }
 
 const Breadcrumbs: React.SFC<Props> = ({ entries }) => (
-  <h1>
+  <h1 className="mb-0">
     {entries.map(
       (a, index) =>
         index < entries.length - 1 ? (

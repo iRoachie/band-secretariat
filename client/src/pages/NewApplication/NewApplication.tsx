@@ -1,4 +1,5 @@
 import React from 'react'
+import { DatePicker } from 'antd'
 
 import {
   Page,
@@ -7,16 +8,16 @@ import {
   Panel,
   Input,
   Select,
-  DatePicker,
 } from '../../components'
 import countries from '../../data/countries'
 import { Value } from '../../types'
 import { configs } from '../../config'
 
 import { PhotoURL, FilePicker, FilePickerContainer } from './styles'
+import { Moment } from 'moment'
 
 interface State {
-  applicationDate: Date | null
+  applicationDate: Moment | undefined
   firstName: string
   lastName: string
   otherNames: string
@@ -31,7 +32,7 @@ interface State {
 
 class NewApplication extends React.Component<{}, State> {
   state = {
-    applicationDate: null,
+    applicationDate: undefined,
     firstName: '',
     lastName: '',
     otherNames: '',
@@ -203,7 +204,9 @@ class NewApplication extends React.Component<{}, State> {
 
             <Panel title="Band">
               <DatePicker
-                label="Application Date"
+                style={{ width: '100%' }}
+                placeholder="Application Date"
+                size="large"
                 value={this.state.applicationDate}
                 onChange={applicationDate =>
                   this.updateValue({ applicationDate })
