@@ -35,7 +35,7 @@ const CardBody = styled.div.attrs({
 `
 
 const Name = styled.p.attrs({
-  className: 'text-xl relative mr-2',
+  className: 'text-xl relative mr-2 mb-0',
 })`
   top: -4px;
 `

@@ -9,7 +9,7 @@ interface ItemsProps {
 const Item: React.SFC<ItemsProps> = ({ value, icon }) => (
   <div className="flex items-center">
     <i className={`icon ${icon} text-lg`} />
-    <p className="ml-3 text-base">{value}</p>
+    <p className="ml-3 text-base mb-0">{value}</p>
   </div>
 )
 
