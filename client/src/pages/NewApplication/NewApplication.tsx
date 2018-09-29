@@ -104,8 +104,8 @@ class NewApplication extends React.Component<{}, State> {
                     <img src={photoURL} alt="avatar" />
                   ) : (
                     <div>
-                      <Icon type="plus" />
-                      <div className="ant-upload-text">Upload</div>
+                      <Icon type="camera" />
+                      <div className="ant-upload-text">Upload Photo</div>
                     </div>
                   )}
                 </FilePicker>
