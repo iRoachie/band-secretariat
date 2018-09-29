@@ -1,5 +1,7 @@
 import React from 'react'
-import { DatePicker } from 'antd'
+import { DatePicker, Upload, Icon } from 'antd'
+import { UploadChangeParam } from 'antd/lib/upload/interface'
+import styled from 'styled-components'
 
 import {
   Page,
@@ -11,9 +13,7 @@ import {
 } from '../../components'
 import countries from '../../data/countries'
 import { Value } from '../../types'
-import { configs } from '../../config'
 
-import { PhotoURL, FilePicker, FilePickerContainer } from './styles'
 import { Moment } from 'moment'
 
 interface State {
@@ -38,7 +38,7 @@ class NewApplication extends React.Component<{}, State> {
     otherNames: '',
     nationality: '',
     country: '',
-    photoURL: configs.defaultAvatar,
+    photoURL: '',
     email: '',
     tel: '',
     cell: '',
@@ -58,19 +58,18 @@ class NewApplication extends React.Component<{}, State> {
     input!.click()
   }
 
-  previewImage = (file: Blob) => {
-    if (file) {
-      const reader = new FileReader()
-
-      reader.onload = e => {
-        this.updateValue({ photoURL: e.target!.result })
-      }
-
-      reader.readAsDataURL(file)
+  previewImage = (info: UploadChangeParam) => {
+    const reader = new FileReader()
+    reader.onloadend = obj => {
+      // tslint:disable-next-line:no-string-literal
+      this.setState({ photoURL: obj.srcElement!['result'] })
     }
+    reader.readAsDataURL(info.file.originFileObj!)
   }
 
   render() {
+    const { photoURL } = this.state
+
     return (
       <Page
         renderHeader={
@@ -92,24 +91,26 @@ class NewApplication extends React.Component<{}, State> {
         <div className="row">
           <div className="col-md-8">
             <Panel title="Personal">
-              <div className="row">
-                <div className="col-sm-4">
-                  <FilePickerContainer>
-                    <FilePicker
-                      type="file"
-                      id="file-picker"
-                      onChange={({ target }) =>
-                        this.previewImage(target.files![0])
-                      }
-                    />
+              <div className="row flex flex-col sm:flex-row px-4">
+                <FilePicker
+                  name="avatar"
+                  listType="picture-card"
+                  showUploadList={false}
+                  onChange={this.previewImage}
+                  customRequest={() => null}
+                  style={{ flex: 1 }}
+                >
+                  {photoURL ? (
+                    <img src={photoURL} alt="avatar" />
+                  ) : (
+                    <div>
+                      <Icon type="plus" />
+                      <div className="ant-upload-text">Upload</div>
+                    </div>
+                  )}
+                </FilePicker>
 
-                    <button onClick={this.triggerUpload} className="w-full">
-                      <PhotoURL src={this.state.photoURL} alt="" />
-                    </button>
-                  </FilePickerContainer>
-                </div>
-
-                <div className="col-sm-8">
+                <div className="flex-1 sm:pl-4 mt-4 sm:mt-0">
                   <div className="row">
                     <div className="col-md-6">
                       <Input
@@ -219,5 +220,19 @@ class NewApplication extends React.Component<{}, State> {
     )
   }
 }
+
+/* Styles */
+const FilePicker = styled(Upload)`
+  .ant-upload {
+    height: auto !important;
+    min-width: 226px;
+    min-height: 226px;
+    width: 100% !important;
+
+    @media screen and (min-width: 576px) {
+      max-width: 226px;
+    }
+  }
+`
 
 export default NewApplication
