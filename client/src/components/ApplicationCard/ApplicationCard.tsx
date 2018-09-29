@@ -1,9 +1,11 @@
 import React from 'react'
 import moment from 'moment'
 import { Link } from 'react-router-dom'
+import { Card } from 'antd'
+import styled from 'styled-components'
 
 import { Application } from '../../../../server/src/generated/prisma'
-import { Status, Avatar, CardBody, Name } from './styles'
+import { Status, Avatar } from './styles'
 import CardItem from './components/CardItem'
 
 interface Props {
@@ -11,45 +13,50 @@ interface Props {
 }
 
 const ApplicationCard: React.SFC<Props> = ({ application }) => (
-  <Link
-    to={`/applications/${application.id}`}
-    className="block col-sm-6 col-lg-4"
-  >
-    <article className="rounded-sm mb-8">
-      <div className="flex">
-        <Avatar src={application.photoURL} alt="" />
+  <Link to={`/applications/${application.id}`} className="block ">
+    <Content
+      cover={<Avatar alt="Applicant Photo" src={application.photoURL} />}
+      actions={[
+        !!application.phone &&
+          !!application.phone[0] && (
+            <CardItem value={application.phone[0].number} icon="ion-ios-call" />
+          ),
 
-        <CardBody>
-          <header className="flex justify-between items-start mb-4">
-            <Name>
-              {application.firstName} {application.surName}
-            </Name>
-
-            <Status status={application.status}>
-              {application.status.replace('_', ' ')}
-            </Status>
-          </header>
-
-          <CardItem
-            value={moment.utc(application.applicationDate).format('Y')}
-            icon="ion-md-calendar"
-          />
-
-          {!!application.phone &&
-            !!application.phone[0] && (
-              <CardItem
-                value={application.phone[0].number}
-                icon="ion-ios-call"
-              />
-            )}
-
-          {!!application.email && (
-            <CardItem value={application.email} icon="ion-ios-mail" />
-          )}
-        </CardBody>
-      </div>
-    </article>
+        !!application.email && (
+          <CardItem value={application.email} icon="ion-ios-mail" />
+        ),
+      ]}
+    >
+      <Card.Meta
+        avatar={
+          <Status status={application.status}>
+            {application.status.replace('_', ' ')}
+          </Status>
+        }
+        title={`${application.firstName} ${application.surName}`}
+        description={moment.utc(application.applicationDate).format('Y')}
+      />
+    </Content>
   </Link>
 )
+
+const Content = styled(Card)`
+  .ant-card-actions {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+
+    li {
+      width: 100% !important;
+      text-align: left;
+      margin: 0;
+    }
+  }
+
+  .ant-card-actions > li:not(:last-child) {
+    border-right: 0;
+    margin-bottom: 1rem;
+  }
+`
 
 export default ApplicationCard

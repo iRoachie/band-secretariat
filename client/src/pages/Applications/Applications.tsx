@@ -3,6 +3,7 @@ import gql from 'graphql-tag'
 import { Query } from 'react-apollo'
 import { Button, Spin, Icon } from 'antd'
 import { RouteComponentProps } from 'react-router-dom'
+import styled from 'styled-components'
 
 import { Page, ApplicationCard, Breadcrumbs } from '../../components'
 import { Application } from '../../../../server/src/generated/prisma'
@@ -78,13 +79,15 @@ class Applications extends React.Component<RouteComponentProps<{}>, State> {
 
             return (
               <div className="row">
-                {data.applications.length === 0 && (
+                {data.applications.length === 0 ? (
                   <p className="text-center">No Applications</p>
+                ) : (
+                  <ApplicationGrid className="px-4">
+                    {data.applications.map((a: Application) => (
+                      <ApplicationCard key={a.id} application={a} />
+                    ))}
+                  </ApplicationGrid>
                 )}
-
-                {data.applications.map((a: Application) => (
-                  <ApplicationCard key={a.id} application={a} />
-                ))}
               </div>
             )
           }}
@@ -93,4 +96,12 @@ class Applications extends React.Component<RouteComponentProps<{}>, State> {
     )
   }
 }
+
+const ApplicationGrid = styled.section`
+  display: grid;
+  grid-column-gap: 20px;
+  grid-row-gap: 50px;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 3fr));
+  padding-bottom: 2rem;
+`
 export default Applications

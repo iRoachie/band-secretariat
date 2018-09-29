@@ -7,8 +7,10 @@ interface StatusProps {
 }
 
 const Status = styled.span.attrs({
-  className: 'p-1 font-bold text-xs text-right',
+  className: 'p-1 font-bold text-xs text-right absolute',
 })`
+  top: 0.5rem;
+  left: 0.5rem;
   white-space: nowrap;
   background: ${(props: StatusProps) => {
     return Theme.status[props.status.toLowerCase()]
@@ -21,23 +23,10 @@ const Status = styled.span.attrs({
     return '#fff'
   }};
 `
-
 const Avatar = styled.img.attrs({
-  className: 'relative h-32 w-32',
+  className: 'h-auto w-64',
 })`
-  right: -1px;
+  min-height: 15rem;
 `
 
-const CardBody = styled.div.attrs({
-  className: 'px-4 py-3 flex-1 bg-white',
-})`
-  border: 1px solid rgba(0, 0, 0, 0.12);
-`
-
-const Name = styled.p.attrs({
-  className: 'text-xl relative mr-2 mb-0',
-})`
-  top: -4px;
-`
-
-export { Status, Avatar, CardBody, Name }
+export { Status, Avatar }
