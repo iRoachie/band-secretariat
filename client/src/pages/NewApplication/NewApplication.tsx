@@ -202,6 +202,10 @@ class NewApplication extends React.Component<FormComponentProps, State> {
                 <FormItem label="Address">
                   {getFieldDecorator('address')(<InputTextArea />)}
                 </FormItem>
+
+                <FormItem label="Parent/Guardian">
+                  {getFieldDecorator('parent_guardian')(<Input />)}
+                </FormItem>
               </Panel>
 
               <Panel title="Band">

@@ -54,7 +54,7 @@ type Application {
   height: String
   weight: String
   sex: Sex!
-  parent_gaurdian: String
+  parent_guardian: String
   occupation: String
   employer_school: String
   grade: String

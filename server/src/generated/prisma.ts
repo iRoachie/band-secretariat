@@ -85,7 +85,7 @@ type Application implements Node {
   height: String
   weight: String
   sex: Sex!
-  parent_gaurdian: String
+  parent_guardian: String
   occupation: String
   employer_school: String
   grade: String
@@ -126,7 +126,7 @@ input ApplicationCreateInput {
   height: String
   weight: String
   sex: Sex!
-  parent_gaurdian: String
+  parent_guardian: String
   occupation: String
   employer_school: String
   grade: String
@@ -187,8 +187,8 @@ enum ApplicationOrderByInput {
   weight_DESC
   sex_ASC
   sex_DESC
-  parent_gaurdian_ASC
-  parent_gaurdian_DESC
+  parent_guardian_ASC
+  parent_guardian_DESC
   occupation_ASC
   occupation_DESC
   employer_school_ASC
@@ -235,7 +235,7 @@ type ApplicationPreviousValues {
   height: String
   weight: String
   sex: Sex!
-  parent_gaurdian: String
+  parent_guardian: String
   occupation: String
   employer_school: String
   grade: String
@@ -312,7 +312,7 @@ input ApplicationUpdateInput {
   height: String
   weight: String
   sex: Sex
-  parent_gaurdian: String
+  parent_guardian: String
   occupation: String
   employer_school: String
   grade: String
@@ -846,46 +846,46 @@ input ApplicationWhereInput {
 
   """All values that are not contained in given list."""
   sex_not_in: [Sex!]
-  parent_gaurdian: String
+  parent_guardian: String
 
   """All values that are not equal to given value."""
-  parent_gaurdian_not: String
+  parent_guardian_not: String
 
   """All values that are contained in given list."""
-  parent_gaurdian_in: [String!]
+  parent_guardian_in: [String!]
 
   """All values that are not contained in given list."""
-  parent_gaurdian_not_in: [String!]
+  parent_guardian_not_in: [String!]
 
   """All values less than the given value."""
-  parent_gaurdian_lt: String
+  parent_guardian_lt: String
 
   """All values less than or equal the given value."""
-  parent_gaurdian_lte: String
+  parent_guardian_lte: String
 
   """All values greater than the given value."""
-  parent_gaurdian_gt: String
+  parent_guardian_gt: String
 
   """All values greater than or equal the given value."""
-  parent_gaurdian_gte: String
+  parent_guardian_gte: String
 
   """All values containing the given string."""
-  parent_gaurdian_contains: String
+  parent_guardian_contains: String
 
   """All values not containing the given string."""
-  parent_gaurdian_not_contains: String
+  parent_guardian_not_contains: String
 
   """All values starting with the given string."""
-  parent_gaurdian_starts_with: String
+  parent_guardian_starts_with: String
 
   """All values not starting with the given string."""
-  parent_gaurdian_not_starts_with: String
+  parent_guardian_not_starts_with: String
 
   """All values ending with the given string."""
-  parent_gaurdian_ends_with: String
+  parent_guardian_ends_with: String
 
   """All values not ending with the given string."""
-  parent_gaurdian_not_ends_with: String
+  parent_guardian_not_ends_with: String
   occupation: String
 
   """All values that are not equal to given value."""
@@ -1711,8 +1711,8 @@ export type ApplicationOrderByInput =   'id_ASC' |
   'weight_DESC' |
   'sex_ASC' |
   'sex_DESC' |
-  'parent_gaurdian_ASC' |
-  'parent_gaurdian_DESC' |
+  'parent_guardian_ASC' |
+  'parent_guardian_DESC' |
   'occupation_ASC' |
   'occupation_DESC' |
   'employer_school_ASC' |
@@ -1794,7 +1794,7 @@ export interface ApplicationCreateInput {
   height?: String
   weight?: String
   sex: Sex
-  parent_gaurdian?: String
+  parent_guardian?: String
   occupation?: String
   employer_school?: String
   grade?: String
@@ -1998,20 +1998,20 @@ export interface ApplicationWhereInput {
   sex_not?: Sex
   sex_in?: Sex[] | Sex
   sex_not_in?: Sex[] | Sex
-  parent_gaurdian?: String
-  parent_gaurdian_not?: String
-  parent_gaurdian_in?: String[] | String
-  parent_gaurdian_not_in?: String[] | String
-  parent_gaurdian_lt?: String
-  parent_gaurdian_lte?: String
-  parent_gaurdian_gt?: String
-  parent_gaurdian_gte?: String
-  parent_gaurdian_contains?: String
-  parent_gaurdian_not_contains?: String
-  parent_gaurdian_starts_with?: String
-  parent_gaurdian_not_starts_with?: String
-  parent_gaurdian_ends_with?: String
-  parent_gaurdian_not_ends_with?: String
+  parent_guardian?: String
+  parent_guardian_not?: String
+  parent_guardian_in?: String[] | String
+  parent_guardian_not_in?: String[] | String
+  parent_guardian_lt?: String
+  parent_guardian_lte?: String
+  parent_guardian_gt?: String
+  parent_guardian_gte?: String
+  parent_guardian_contains?: String
+  parent_guardian_not_contains?: String
+  parent_guardian_starts_with?: String
+  parent_guardian_not_starts_with?: String
+  parent_guardian_ends_with?: String
+  parent_guardian_not_ends_with?: String
   occupation?: String
   occupation_not?: String
   occupation_in?: String[] | String
@@ -2283,7 +2283,7 @@ export interface ApplicationUpdateInput {
   height?: String
   weight?: String
   sex?: Sex
-  parent_gaurdian?: String
+  parent_guardian?: String
   occupation?: String
   employer_school?: String
   grade?: String
@@ -2356,7 +2356,7 @@ export interface Application extends Node {
   height?: String
   weight?: String
   sex: Sex
-  parent_gaurdian?: String
+  parent_guardian?: String
   occupation?: String
   employer_school?: String
   grade?: String
@@ -2409,7 +2409,7 @@ export interface ApplicationPreviousValues {
   height?: String
   weight?: String
   sex: Sex
-  parent_gaurdian?: String
+  parent_guardian?: String
   occupation?: String
   employer_school?: String
   grade?: String
