@@ -1,5 +1,5 @@
 # source: http://localhost:4466
-# timestamp: Sat Sep 29 2018 18:23:58 GMT-0400 (AST)
+# timestamp: Sat Sep 29 2018 18:31:48 GMT-0400 (AST)
 
 type AggregateApplication {
   count: Int!
@@ -23,8 +23,6 @@ type Application implements Node {
   phone(where: PhoneNumberWhereInput, orderBy: PhoneNumberOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PhoneNumber!]
   photoURL: String
   email: String
-  height: String
-  weight: String
   sex: Sex!
   parent_guardian: String
   occupation: String
@@ -64,8 +62,6 @@ input ApplicationCreateInput {
   dateOfBirth: DateTime!
   photoURL: String
   email: String
-  height: String
-  weight: String
   sex: Sex!
   parent_guardian: String
   occupation: String
@@ -126,10 +122,6 @@ enum ApplicationOrderByInput {
   photoURL_DESC
   email_ASC
   email_DESC
-  height_ASC
-  height_DESC
-  weight_ASC
-  weight_DESC
   sex_ASC
   sex_DESC
   parent_guardian_ASC
@@ -175,8 +167,6 @@ type ApplicationPreviousValues {
   dateOfBirth: DateTime!
   photoURL: String
   email: String
-  height: String
-  weight: String
   sex: Sex!
   parent_guardian: String
   occupation: String
@@ -252,8 +242,6 @@ input ApplicationUpdateInput {
   dateOfBirth: DateTime
   photoURL: String
   email: String
-  height: String
-  weight: String
   sex: Sex
   parent_guardian: String
   occupation: String
@@ -703,86 +691,6 @@ input ApplicationWhereInput {
 
   """All values not ending with the given string."""
   email_not_ends_with: String
-  height: String
-
-  """All values that are not equal to given value."""
-  height_not: String
-
-  """All values that are contained in given list."""
-  height_in: [String!]
-
-  """All values that are not contained in given list."""
-  height_not_in: [String!]
-
-  """All values less than the given value."""
-  height_lt: String
-
-  """All values less than or equal the given value."""
-  height_lte: String
-
-  """All values greater than the given value."""
-  height_gt: String
-
-  """All values greater than or equal the given value."""
-  height_gte: String
-
-  """All values containing the given string."""
-  height_contains: String
-
-  """All values not containing the given string."""
-  height_not_contains: String
-
-  """All values starting with the given string."""
-  height_starts_with: String
-
-  """All values not starting with the given string."""
-  height_not_starts_with: String
-
-  """All values ending with the given string."""
-  height_ends_with: String
-
-  """All values not ending with the given string."""
-  height_not_ends_with: String
-  weight: String
-
-  """All values that are not equal to given value."""
-  weight_not: String
-
-  """All values that are contained in given list."""
-  weight_in: [String!]
-
-  """All values that are not contained in given list."""
-  weight_not_in: [String!]
-
-  """All values less than the given value."""
-  weight_lt: String
-
-  """All values less than or equal the given value."""
-  weight_lte: String
-
-  """All values greater than the given value."""
-  weight_gt: String
-
-  """All values greater than or equal the given value."""
-  weight_gte: String
-
-  """All values containing the given string."""
-  weight_contains: String
-
-  """All values not containing the given string."""
-  weight_not_contains: String
-
-  """All values starting with the given string."""
-  weight_starts_with: String
-
-  """All values not starting with the given string."""
-  weight_not_starts_with: String
-
-  """All values ending with the given string."""
-  weight_ends_with: String
-
-  """All values not ending with the given string."""
-  weight_not_ends_with: String
   sex: Sex
 
   """All values that are not equal to given value."""

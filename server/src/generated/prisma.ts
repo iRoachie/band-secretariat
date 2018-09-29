@@ -82,8 +82,6 @@ type Application implements Node {
   phone(where: PhoneNumberWhereInput, orderBy: PhoneNumberOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PhoneNumber!]
   photoURL: String
   email: String
-  height: String
-  weight: String
   sex: Sex!
   parent_guardian: String
   occupation: String
@@ -123,8 +121,6 @@ input ApplicationCreateInput {
   dateOfBirth: DateTime!
   photoURL: String
   email: String
-  height: String
-  weight: String
   sex: Sex!
   parent_guardian: String
   occupation: String
@@ -185,10 +181,6 @@ enum ApplicationOrderByInput {
   photoURL_DESC
   email_ASC
   email_DESC
-  height_ASC
-  height_DESC
-  weight_ASC
-  weight_DESC
   sex_ASC
   sex_DESC
   parent_guardian_ASC
@@ -234,8 +226,6 @@ type ApplicationPreviousValues {
   dateOfBirth: DateTime!
   photoURL: String
   email: String
-  height: String
-  weight: String
   sex: Sex!
   parent_guardian: String
   occupation: String
@@ -311,8 +301,6 @@ input ApplicationUpdateInput {
   dateOfBirth: DateTime
   photoURL: String
   email: String
-  height: String
-  weight: String
   sex: Sex
   parent_guardian: String
   occupation: String
@@ -762,86 +750,6 @@ input ApplicationWhereInput {
 
   """All values not ending with the given string."""
   email_not_ends_with: String
-  height: String
-
-  """All values that are not equal to given value."""
-  height_not: String
-
-  """All values that are contained in given list."""
-  height_in: [String!]
-
-  """All values that are not contained in given list."""
-  height_not_in: [String!]
-
-  """All values less than the given value."""
-  height_lt: String
-
-  """All values less than or equal the given value."""
-  height_lte: String
-
-  """All values greater than the given value."""
-  height_gt: String
-
-  """All values greater than or equal the given value."""
-  height_gte: String
-
-  """All values containing the given string."""
-  height_contains: String
-
-  """All values not containing the given string."""
-  height_not_contains: String
-
-  """All values starting with the given string."""
-  height_starts_with: String
-
-  """All values not starting with the given string."""
-  height_not_starts_with: String
-
-  """All values ending with the given string."""
-  height_ends_with: String
-
-  """All values not ending with the given string."""
-  height_not_ends_with: String
-  weight: String
-
-  """All values that are not equal to given value."""
-  weight_not: String
-
-  """All values that are contained in given list."""
-  weight_in: [String!]
-
-  """All values that are not contained in given list."""
-  weight_not_in: [String!]
-
-  """All values less than the given value."""
-  weight_lt: String
-
-  """All values less than or equal the given value."""
-  weight_lte: String
-
-  """All values greater than the given value."""
-  weight_gt: String
-
-  """All values greater than or equal the given value."""
-  weight_gte: String
-
-  """All values containing the given string."""
-  weight_contains: String
-
-  """All values not containing the given string."""
-  weight_not_contains: String
-
-  """All values starting with the given string."""
-  weight_starts_with: String
-
-  """All values not starting with the given string."""
-  weight_not_starts_with: String
-
-  """All values ending with the given string."""
-  weight_ends_with: String
-
-  """All values not ending with the given string."""
-  weight_not_ends_with: String
   sex: Sex
 
   """All values that are not equal to given value."""
@@ -1701,10 +1609,6 @@ export type ApplicationOrderByInput =   'id_ASC' |
   'photoURL_DESC' |
   'email_ASC' |
   'email_DESC' |
-  'height_ASC' |
-  'height_DESC' |
-  'weight_ASC' |
-  'weight_DESC' |
   'sex_ASC' |
   'sex_DESC' |
   'parent_guardian_ASC' |
@@ -1932,34 +1836,6 @@ export interface ApplicationWhereInput {
   email_not_starts_with?: String
   email_ends_with?: String
   email_not_ends_with?: String
-  height?: String
-  height_not?: String
-  height_in?: String[] | String
-  height_not_in?: String[] | String
-  height_lt?: String
-  height_lte?: String
-  height_gt?: String
-  height_gte?: String
-  height_contains?: String
-  height_not_contains?: String
-  height_starts_with?: String
-  height_not_starts_with?: String
-  height_ends_with?: String
-  height_not_ends_with?: String
-  weight?: String
-  weight_not?: String
-  weight_in?: String[] | String
-  weight_not_in?: String[] | String
-  weight_lt?: String
-  weight_lte?: String
-  weight_gt?: String
-  weight_gte?: String
-  weight_contains?: String
-  weight_not_contains?: String
-  weight_starts_with?: String
-  weight_not_starts_with?: String
-  weight_ends_with?: String
-  weight_not_ends_with?: String
   sex?: Sex
   sex_not?: Sex
   sex_in?: Sex[] | Sex
@@ -2177,8 +2053,6 @@ export interface ApplicationUpdateInput {
   dateOfBirth?: DateTime
   photoURL?: String
   email?: String
-  height?: String
-  weight?: String
   sex?: Sex
   parent_guardian?: String
   occupation?: String
@@ -2218,8 +2092,6 @@ export interface ApplicationCreateInput {
   dateOfBirth: DateTime
   photoURL?: String
   email?: String
-  height?: String
-  weight?: String
   sex: Sex
   parent_guardian?: String
   occupation?: String
@@ -2350,8 +2222,6 @@ export interface Application extends Node {
   phone?: PhoneNumber[]
   photoURL?: String
   email?: String
-  height?: String
-  weight?: String
   sex: Sex
   parent_guardian?: String
   occupation?: String
@@ -2432,8 +2302,6 @@ export interface ApplicationPreviousValues {
   dateOfBirth: DateTime
   photoURL?: String
   email?: String
-  height?: String
-  weight?: String
   sex: Sex
   parent_guardian?: String
   occupation?: String
