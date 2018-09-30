@@ -50,13 +50,12 @@ interface Props {
 
 const Page: React.SFC<Props> = ({ renderHeader, children }) => (
   <main className="relative">
+    {renderHeader && (
+      <Header>
+        <div className="container">{renderHeader}</div>
+      </Header>
+    )}
     <Container>
-      {renderHeader && (
-        <Header>
-          <div className="container">{renderHeader}</div>
-        </Header>
-      )}
-
       <Content className="container">{children}</Content>
     </Container>
   </main>
