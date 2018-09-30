@@ -1246,7 +1246,7 @@ enum MinistryArea {
   MasterGuideInTraining
   AYLeadershipTraining
   PLATraining
-  APLATraing
+  APLATraining
   AmbassadorTraining
 }
 
@@ -1674,7 +1674,7 @@ export type MinistryArea =   'AdventurerClubMember' |
   'MasterGuideInTraining' |
   'AYLeadershipTraining' |
   'PLATraining' |
-  'APLATraing' |
+  'APLATraining' |
   'AmbassadorTraining'
 
 export interface ApplicationCreateinterestedInstrumentsInput {

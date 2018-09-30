@@ -30,7 +30,7 @@ enum MinistryArea {
   MasterGuideInTraining
   AYLeadershipTraining
   PLATraining
-  APLATraing
+  APLATraining
   AmbassadorTraining
 }
 

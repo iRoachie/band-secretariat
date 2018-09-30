@@ -1,5 +1,5 @@
 # source: http://localhost:4466
-# timestamp: Sat Sep 29 2018 20:04:01 GMT-0400 (AST)
+# timestamp: Sat Sep 29 2018 20:07:33 GMT-0400 (AST)
 
 type AggregateApplication {
   count: Int!
@@ -1187,7 +1187,7 @@ enum MinistryArea {
   MasterGuideInTraining
   AYLeadershipTraining
   PLATraining
-  APLATraing
+  APLATraining
   AmbassadorTraining
 }
 
