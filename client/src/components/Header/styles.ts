@@ -52,9 +52,9 @@ const NavItem = styled(NavLink).attrs({
 `
 
 const Account = styled.p.attrs({
-  className: 'font-semibold text-md mb-0',
+  className: 'font-medium text-md mb-0',
 })`
-  color: rgba(0, 0, 0, 0.26);
+  color: rgba(0, 0, 0, 0.54);
 `
 
 const DesktopNav = styled.nav.attrs({
