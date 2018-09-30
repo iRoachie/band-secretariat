@@ -17,6 +17,11 @@
   --text-primary-4: rgba(0, 0, 0, 0.12);
 }
 
+::-webkit-input-placeholder {
+  color: #767676 !important;
+  opacity: 1;
+}
+
 @media (min-width: 768px) {
   :root {
     font-size: 15px;

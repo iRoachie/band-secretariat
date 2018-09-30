@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Upload, Icon, Form } from 'antd'
+import { Button, Upload, Icon, Form, Checkbox, Row, Col } from 'antd'
 import { UploadChangeParam } from 'antd/lib/upload/interface'
 import { FormComponentProps } from 'antd/lib/form'
 import styled from 'styled-components'
@@ -14,9 +14,10 @@ import {
   Input,
   InputTextArea,
 } from '../../components'
-import countries from '../../data/countries'
+import { countries, instruments, classes, ministries } from '../../data'
 
 const FormItem = Form.Item
+const CheckboxGroup = Checkbox.Group
 
 interface State {
   photoURL: string
@@ -25,6 +26,13 @@ interface State {
 class NewApplication extends React.Component<FormComponentProps, State> {
   state = {
     photoURL: '',
+  }
+
+  componentDidMount() {
+    this.props.form.setFieldsValue({
+      sex: 'M',
+      country: 'BB',
+    })
   }
 
   updateValue = (data: Partial<State>) => {
@@ -140,6 +148,40 @@ class NewApplication extends React.Component<FormComponentProps, State> {
 
                     <div className="row">
                       <div className="col-md-6">
+                        <FormItem label="Sex">
+                          {getFieldDecorator('sex')(
+                            <Select
+                              showSearch
+                              filterOption={(input, option) =>
+                                option.props
+                                  .children!.toString()
+                                  .toLowerCase()
+                                  .includes(input.toLowerCase())
+                              }
+                            >
+                              <SelectOption value="M">Male</SelectOption>
+                              <SelectOption value="F">Female</SelectOption>
+                            </Select>
+                          )}
+                        </FormItem>
+                      </div>
+
+                      <div className="col-md-6">
+                        <FormItem label="Date of Birth" required>
+                          {getFieldDecorator('dateOfBirth', {
+                            rules: [
+                              {
+                                required: true,
+                                message: 'Enter date of birth',
+                              },
+                            ],
+                          })(<DatePicker />)}
+                        </FormItem>
+                      </div>
+                    </div>
+
+                    <div className="row">
+                      <div className="col-md-6">
                         <FormItem label="Country">
                           {getFieldDecorator('country')(
                             <Select
@@ -167,10 +209,34 @@ class NewApplication extends React.Component<FormComponentProps, State> {
                         </FormItem>
                       </div>
                     </div>
+
+                    <div className="row">
+                      <div className="col-md-6">
+                        <FormItem label="Occupation">
+                          {getFieldDecorator('occupation')(<Input />)}
+                        </FormItem>
+                      </div>
+                      <div className="col-md-6">
+                        <FormItem label="School or Employer">
+                          {getFieldDecorator('employer_school')(
+                            <Input placeholder="Name of School or Business" />
+                          )}
+                        </FormItem>
+                      </div>
+                    </div>
+
+                    <div className="row">
+                      <div className="col-md-12">
+                        <FormItem label="Hobbies">
+                          {getFieldDecorator('hobbies')(<InputTextArea />)}
+                        </FormItem>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </Panel>
             </div>
+
             <div className="col-md-4">
               <Panel title="Contact">
                 <FormItem label="Telephone" required>
@@ -207,17 +273,161 @@ class NewApplication extends React.Component<FormComponentProps, State> {
                   {getFieldDecorator('parent_guardian')(<Input />)}
                 </FormItem>
               </Panel>
+            </div>
+          </div>
 
+          <div className="row">
+            <div className="col-md-6">
               <Panel title="Band">
-                <FormItem label="Application Date" required>
-                  {getFieldDecorator('applicationDate', {
-                    rules: [
-                      {
-                        required: true,
-                        message: 'Enter application date',
-                      },
-                    ],
-                  })(<DatePicker />)}
+                <div className="row">
+                  <div className="col-md-6">
+                    <FormItem label="Application Date" required>
+                      {getFieldDecorator('applicationDate', {
+                        rules: [
+                          {
+                            required: true,
+                            message: 'Enter application date',
+                          },
+                        ],
+                      })(<DatePicker />)}
+                    </FormItem>
+                  </div>
+                  <div className="col-md-6">
+                    <FormItem label="Music Grade">
+                      {getFieldDecorator('grade')(
+                        <Input placeholder="Grade and examination body" />
+                      )}
+                    </FormItem>
+                  </div>
+                </div>
+
+                <div className="row">
+                  <div className="col-md-12">
+                    <FormItem label="Band Experience">
+                      {getFieldDecorator('bandExperience')(
+                        <InputTextArea placeholder="Any musical instrumental groups you were apart of" />
+                      )}
+                    </FormItem>
+                  </div>
+                </div>
+
+                <div className="row">
+                  <div className="col-md-6">
+                    <FormItem label="Primary Instrument" required>
+                      {getFieldDecorator('instrument1', {
+                        rules: [
+                          {
+                            required: true,
+                            message: 'Select instrument interested in playing',
+                          },
+                        ],
+                      })(
+                        <Select
+                          showSearch
+                          filterOption={(input, option) =>
+                            option.props
+                              .children!.toString()
+                              .toLowerCase()
+                              .includes(input.toLowerCase())
+                          }
+                        >
+                          {instruments.map(a => (
+                            <SelectOption key={a} value={a}>
+                              {a}
+                            </SelectOption>
+                          ))}
+                        </Select>
+                      )}
+                    </FormItem>
+                  </div>
+                  <div className="col-md-6">
+                    <FormItem label="Secondary Instrument">
+                      {getFieldDecorator('instrument2')(
+                        <Select
+                          showSearch
+                          filterOption={(input, option) =>
+                            option.props
+                              .children!.toString()
+                              .toLowerCase()
+                              .includes(input.toLowerCase())
+                          }
+                        >
+                          {instruments.map(a => (
+                            <SelectOption key={a} value={a}>
+                              {a}
+                            </SelectOption>
+                          ))}
+                        </Select>
+                      )}
+                    </FormItem>
+                  </div>
+                </div>
+
+                <div className="row">
+                  <div className="col-md-12">
+                    <FormItem label="State breifly your reason for wanting to join the band">
+                      {getFieldDecorator('reason', {
+                        rules: [
+                          {
+                            required: true,
+                            message: 'Enter reason for wanting to join',
+                          },
+                        ],
+                      })(<InputTextArea />)}
+                    </FormItem>
+                  </div>
+                </div>
+              </Panel>
+            </div>
+            <div className="col-md-6">
+              <Panel title="Church">
+                <FormItem label="Church">
+                  {getFieldDecorator('church')(
+                    <Input placeholder="Name of church" />
+                  )}
+                </FormItem>
+                <FormItem label="Position Held">
+                  {getFieldDecorator('churchPosition')(
+                    <Input placeholder="Deacon, Elder, Sabbath School etc." />
+                  )}
+                </FormItem>
+                <FormItem label="Adventurer/Pathfinder Club">
+                  {getFieldDecorator('club')(
+                    <Input placeholder="Name of club" />
+                  )}
+                </FormItem>
+                <FormItem label="Adventurer/Pathfinder Class">
+                  {getFieldDecorator('pathfinder_adventurerClass')(
+                    <Select
+                      showSearch
+                      filterOption={(input, option) =>
+                        option.props
+                          .children!.toString()
+                          .toLowerCase()
+                          .includes(input.toLowerCase())
+                      }
+                    >
+                      {classes.map(a => (
+                        <SelectOption key={a} value={a}>
+                          {a}
+                        </SelectOption>
+                      ))}
+                    </Select>
+                  )}
+                </FormItem>
+
+                <FormItem label="Areas of Youth Ministry">
+                  {getFieldDecorator('ministryAreas')(
+                    <CheckboxGroup>
+                      <Row>
+                        {ministries.map(a => (
+                          <Col span={12} key={a.value}>
+                            <Checkbox value={a.value}>{a.label}</Checkbox>
+                          </Col>
+                        ))}
+                      </Row>
+                    </CheckboxGroup>
+                  )}
                 </FormItem>
               </Panel>
             </div>

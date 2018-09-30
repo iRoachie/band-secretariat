@@ -15,7 +15,9 @@ const Input = styled(AntdInput).attrs({
   size: 'large',
 })``
 
-const InputTextArea = AntdInput.TextArea
+const InputTextArea = styled(AntdInput.TextArea)`
+  font-size: 1rem !important;
+`
 
 const DatePicker = styled(AntdDatePicker).attrs({
   size: 'large',
