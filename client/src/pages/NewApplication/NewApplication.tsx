@@ -55,7 +55,7 @@ class NewApplication extends React.Component<FormComponentProps, State> {
   submitHandler = (event: React.SyntheticEvent) => {
     event.preventDefault()
 
-    this.props.form.validateFields((err: string, value: any) => {
+    this.props.form.validateFields((err: string, values: any) => {
       //
     })
   }
@@ -137,7 +137,6 @@ class NewApplication extends React.Component<FormComponentProps, State> {
                         </FormItem>
                       </div>
                     </div>
-
                     <div className="row">
                       <div className="col-md-12">
                         <FormItem label="Other names">
@@ -145,93 +144,93 @@ class NewApplication extends React.Component<FormComponentProps, State> {
                         </FormItem>
                       </div>
                     </div>
+                  </div>
+                </div>
 
-                    <div className="row">
-                      <div className="col-md-6">
-                        <FormItem label="Sex">
-                          {getFieldDecorator('sex')(
-                            <Select
-                              showSearch
-                              filterOption={(input, option) =>
-                                option.props
-                                  .children!.toString()
-                                  .toLowerCase()
-                                  .includes(input.toLowerCase())
-                              }
-                            >
-                              <SelectOption value="M">Male</SelectOption>
-                              <SelectOption value="F">Female</SelectOption>
-                            </Select>
-                          )}
-                        </FormItem>
-                      </div>
+                <div className="row">
+                  <div className="col-md-6">
+                    <FormItem label="Sex">
+                      {getFieldDecorator('sex')(
+                        <Select
+                          showSearch
+                          filterOption={(input, option) =>
+                            option.props
+                              .children!.toString()
+                              .toLowerCase()
+                              .includes(input.toLowerCase())
+                          }
+                        >
+                          <SelectOption value="M">Male</SelectOption>
+                          <SelectOption value="F">Female</SelectOption>
+                        </Select>
+                      )}
+                    </FormItem>
+                  </div>
 
-                      <div className="col-md-6">
-                        <FormItem label="Date of Birth" required>
-                          {getFieldDecorator('dateOfBirth', {
-                            rules: [
-                              {
-                                required: true,
-                                message: 'Enter date of birth',
-                              },
-                            ],
-                          })(<DatePicker />)}
-                        </FormItem>
-                      </div>
-                    </div>
+                  <div className="col-md-6">
+                    <FormItem label="Date of Birth" required>
+                      {getFieldDecorator('dateOfBirth', {
+                        rules: [
+                          {
+                            required: true,
+                            message: 'Enter date of birth',
+                          },
+                        ],
+                      })(<DatePicker />)}
+                    </FormItem>
+                  </div>
+                </div>
 
-                    <div className="row">
-                      <div className="col-md-6">
-                        <FormItem label="Country">
-                          {getFieldDecorator('country')(
-                            <Select
-                              showSearch
-                              filterOption={(input, option) =>
-                                option.props
-                                  .children!.toString()
-                                  .toLowerCase()
-                                  .includes(input.toLowerCase())
-                              }
-                            >
-                              {countries.map(a => (
-                                <SelectOption key={a.code} value={a.code}>
-                                  {a.name}
-                                </SelectOption>
-                              ))}
-                            </Select>
-                          )}
-                        </FormItem>
-                      </div>
+                <div className="row">
+                  <div className="col-md-6">
+                    <FormItem label="Country">
+                      {getFieldDecorator('country')(
+                        <Select
+                          showSearch
+                          filterOption={(input, option) =>
+                            option.props
+                              .children!.toString()
+                              .toLowerCase()
+                              .includes(input.toLowerCase())
+                          }
+                        >
+                          {countries.map(a => (
+                            <SelectOption key={a.code} value={a.code}>
+                              {a.name}
+                            </SelectOption>
+                          ))}
+                        </Select>
+                      )}
+                    </FormItem>
+                  </div>
 
-                      <div className="col-md-6">
-                        <FormItem label="Nationality">
-                          {getFieldDecorator('nationality')(<Input />)}
-                        </FormItem>
-                      </div>
-                    </div>
+                  <div className="col-md-6">
+                    <FormItem label="Nationality">
+                      {getFieldDecorator('nationality')(<Input />)}
+                    </FormItem>
+                  </div>
+                </div>
 
-                    <div className="row">
-                      <div className="col-md-6">
-                        <FormItem label="Occupation">
-                          {getFieldDecorator('occupation')(<Input />)}
-                        </FormItem>
-                      </div>
-                      <div className="col-md-6">
-                        <FormItem label="School or Employer">
-                          {getFieldDecorator('employer_school')(
-                            <Input placeholder="Name of School or Business" />
-                          )}
-                        </FormItem>
-                      </div>
-                    </div>
+                <div className="row">
+                  <div className="col-md-6">
+                    <FormItem label="Occupation">
+                      {getFieldDecorator('occupation')(<Input />)}
+                    </FormItem>
+                  </div>
+                  <div className="col-md-6">
+                    <FormItem label="School or Employer">
+                      {getFieldDecorator('employer_school')(
+                        <Input placeholder="Name of School or Business" />
+                      )}
+                    </FormItem>
+                  </div>
+                </div>
 
-                    <div className="row">
-                      <div className="col-md-12">
-                        <FormItem label="Hobbies">
-                          {getFieldDecorator('hobbies')(<InputTextArea />)}
-                        </FormItem>
-                      </div>
-                    </div>
+                <div className="row">
+                  <div className="col-md-12">
+                    <FormItem label="Hobbies">
+                      {getFieldDecorator('hobbies')(<InputTextArea />)}
+                    </FormItem>
                   </div>
                 </div>
               </Panel>
