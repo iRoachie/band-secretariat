@@ -58,11 +58,13 @@ const Account = styled.p.attrs({
 `
 
 const DesktopNav = styled.nav.attrs({
-  className: 'shadow relative z-10 bg-white h-16',
+  className: 'shadow fixed z-20 bg-white h-16 w-full pin-t',
 })``
 
 const MobileNav = styled.nav.attrs({
-  className: 'flex items-center sm:hidden bg-primary h-10',
-})``
+  className: 'flex items-center sm:hidden bg-primary h-10 fixed w-full z-10',
+})`
+  top: 4rem;
+`
 
 export { DesktopNav, NavItem, HeaderLeft, HeaderRight, Account, MobileNav }

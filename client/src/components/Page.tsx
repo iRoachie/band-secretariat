@@ -1,16 +1,27 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Theme } from '../config'
+import { Theme, media } from '../config'
 
 const Header = styled.header.attrs({
-  className: 'py-6',
+  className: 'py-6 fixed w-full z-10',
 })`
   background: #fcfcfd;
   border-bottom: 1px solid ${Theme.border};
+  top: 6.5rem;
+
+  @media ${media.small} {
+    top: 4rem;
+  }
 `
 
 const Container = styled.div`
   animation: appear 400ms;
+  position: relative;
+  top: 6.5rem;
+
+  @media ${media.small} {
+    top: 4rem;
+  }
 
   @keyframes appear {
     0% {
@@ -25,8 +36,16 @@ const Container = styled.div`
   }
 `
 
+const Content = styled.div`
+  margin-top: 8.5rem;
+
+  @media ${media.small} {
+    margin-top: 6.5rem;
+  }
+`
+
 interface Props {
-  renderHeader?: React.ReactNode
+  renderHeader: React.ReactNode
 }
 
 const Page: React.SFC<Props> = ({ renderHeader, children }) => (
@@ -38,7 +57,7 @@ const Page: React.SFC<Props> = ({ renderHeader, children }) => (
         </Header>
       )}
 
-      <div className="container mt-6">{children}</div>
+      <Content className="container">{children}</Content>
     </Container>
   </main>
 )
