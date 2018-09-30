@@ -420,7 +420,7 @@ class NewApplication extends React.Component<FormComponentProps, State> {
                     <CheckboxGroup>
                       <Row>
                         {ministries.map(a => (
-                          <Col span={12} key={a.value}>
+                          <Col md={12} key={a.value}>
                             <Checkbox value={a.value}>{a.label}</Checkbox>
                           </Col>
                         ))}
