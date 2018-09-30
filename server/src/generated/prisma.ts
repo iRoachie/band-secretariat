@@ -1242,7 +1242,7 @@ enum MinistryArea {
   AdventurerClubOfficer
   PathfinderClubMember
   PathfinderClubOfficer
-  AdventistYouthOffice
+  AdventistYouthOfficer
   MasterGuideInTraining
   AYLeadershipTraining
   PLATraining
@@ -1670,7 +1670,7 @@ export type MinistryArea =   'AdventurerClubMember' |
   'AdventurerClubOfficer' |
   'PathfinderClubMember' |
   'PathfinderClubOfficer' |
-  'AdventistYouthOffice' |
+  'AdventistYouthOfficer' |
   'MasterGuideInTraining' |
   'AYLeadershipTraining' |
   'PLATraining' |

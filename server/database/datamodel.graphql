@@ -26,7 +26,7 @@ enum MinistryArea {
   AdventurerClubOfficer
   PathfinderClubMember
   PathfinderClubOfficer
-  AdventistYouthOffice
+  AdventistYouthOfficer
   MasterGuideInTraining
   AYLeadershipTraining
   PLATraining
