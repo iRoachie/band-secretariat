@@ -29,7 +29,7 @@ import {
   InputTextArea,
 } from '../../components'
 import { LoadingConsumer } from '../../containers/Loading'
-import { countries, instruments, classes, ministries } from '../../data'
+import { countries, instruments, classes, ministries, bands } from '../../data'
 import { ApplicationCreateInput } from '../../../../server/src/generated/prisma'
 import { firebase } from '../../config'
 
@@ -65,6 +65,7 @@ class NewApplication extends React.Component<Props, State> {
     this.props.form.setFieldsValue({
       sex: 'M',
       country: 'BB',
+      band: 'Pathfinder',
     })
   }
 
@@ -101,7 +102,7 @@ class NewApplication extends React.Component<Props, State> {
           firstName: values.firstName,
           surName: values.surName,
           sex: values.sex,
-          band: 'Pathfinder',
+          band: values.band,
           dateOfBirth: values.dateOfBirth.format('YYYY-MM-DD'),
           applicationDate: values.applicationDate.format('YYYY-MM-DD'),
           interestedInstruments: {
@@ -440,6 +441,21 @@ class NewApplication extends React.Component<Props, State> {
               <div className="row">
                 <div className="col-md-6">
                   <Panel title="Band">
+                    <div className="row">
+                      <div className="col-md-6">
+                        <FormItem label="Band" required>
+                          {getFieldDecorator('band')(
+                            <Select>
+                              {bands.map(({ value, label }) => (
+                                <SelectOption key={value} value={value}>
+                                  {label}
+                                </SelectOption>
+                              ))}
+                            </Select>
+                          )}
+                        </FormItem>
+                      </div>
+                    </div>
                     <div className="row">
                       <div className="col-md-6">
                         <FormItem label="Application Date" required>
