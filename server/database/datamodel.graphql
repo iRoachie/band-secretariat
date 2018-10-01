@@ -46,7 +46,7 @@ type Application {
   address: String
   dateOfBirth: DateTime!
   phones: [PhoneNumber!]!
-  photoURL: String @default(value: "generic/profile_default.png")
+  photoURL: String @default(value: "/generic/profile_default.png")
   email: String
   sex: Sex!
   parent_guardian: String
