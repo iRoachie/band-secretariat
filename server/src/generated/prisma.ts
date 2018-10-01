@@ -79,7 +79,7 @@ type Application implements Node {
   nationality: String
   address: String
   dateOfBirth: DateTime!
-  phone(where: PhoneNumberWhereInput, orderBy: PhoneNumberOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PhoneNumber!]
+  phones(where: PhoneNumberWhereInput, orderBy: PhoneNumberOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PhoneNumber!]
   photoURL: String
   email: String
   sex: Sex!
@@ -138,7 +138,7 @@ input ApplicationCreateInput {
   hobbies: String
   ministryAreas: ApplicationCreateministryAreasInput
   interestedInstruments: ApplicationCreateinterestedInstrumentsInput
-  phone: PhoneNumberCreateManyInput
+  phones: PhoneNumberCreateManyInput
 }
 
 input ApplicationCreateinterestedInstrumentsInput {
@@ -322,7 +322,7 @@ input ApplicationUpdateInput {
   hobbies: String
   ministryAreas: ApplicationUpdateministryAreasInput
   interestedInstruments: ApplicationUpdateinterestedInstrumentsInput
-  phone: PhoneNumberUpdateManyInput
+  phones: PhoneNumberUpdateManyInput
 }
 
 input ApplicationUpdateinterestedInstrumentsInput {
@@ -1256,9 +1256,9 @@ input ApplicationWhereInput {
 
   """All values not ending with the given string."""
   hobbies_not_ends_with: String
-  phone_every: PhoneNumberWhereInput
-  phone_some: PhoneNumberWhereInput
-  phone_none: PhoneNumberWhereInput
+  phones_every: PhoneNumberWhereInput
+  phones_some: PhoneNumberWhereInput
+  phones_none: PhoneNumberWhereInput
 }
 
 input ApplicationWhereUniqueInput {
@@ -2060,9 +2060,9 @@ export interface ApplicationWhereInput {
   hobbies_not_starts_with?: String
   hobbies_ends_with?: String
   hobbies_not_ends_with?: String
-  phone_every?: PhoneNumberWhereInput
-  phone_some?: PhoneNumberWhereInput
-  phone_none?: PhoneNumberWhereInput
+  phones_every?: PhoneNumberWhereInput
+  phones_some?: PhoneNumberWhereInput
+  phones_none?: PhoneNumberWhereInput
 }
 
 export interface PhoneNumberUpdateManyInput {
@@ -2131,7 +2131,7 @@ export interface ApplicationUpdateInput {
   hobbies?: String
   ministryAreas?: ApplicationUpdateministryAreasInput
   interestedInstruments?: ApplicationUpdateinterestedInstrumentsInput
-  phone?: PhoneNumberUpdateManyInput
+  phones?: PhoneNumberUpdateManyInput
 }
 
 export interface PhoneNumberUpdateDataInput {
@@ -2171,7 +2171,7 @@ export interface ApplicationCreateInput {
   hobbies?: String
   ministryAreas?: ApplicationCreateministryAreasInput
   interestedInstruments?: ApplicationCreateinterestedInstrumentsInput
-  phone?: PhoneNumberCreateManyInput
+  phones?: PhoneNumberCreateManyInput
 }
 
 export interface PhoneNumberCreateManyInput {
@@ -2283,7 +2283,7 @@ export interface Application extends Node {
   nationality?: String
   address?: String
   dateOfBirth: DateTime
-  phone?: PhoneNumber[]
+  phones?: PhoneNumber[]
   photoURL?: String
   email?: String
   sex: Sex
