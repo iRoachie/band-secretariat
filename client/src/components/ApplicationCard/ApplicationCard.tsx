@@ -17,9 +17,12 @@ const ApplicationCard: React.SFC<Props> = ({ application }) => (
     <Content
       cover={<Avatar alt="Applicant Photo" src={application.photoURL} />}
       actions={[
-        !!application.phone &&
-          !!application.phone[0] && (
-            <CardItem value={application.phone[0].number} icon="ion-ios-call" />
+        !!application.phones &&
+          !!application.phones[0] && (
+            <CardItem
+              value={application.phones[0].number}
+              icon="ion-ios-call"
+            />
           ),
 
         !!application.email && (
