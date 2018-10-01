@@ -8,22 +8,25 @@ import {
 import { ApolloProvider } from 'react-apollo'
 
 import { Header } from './components'
+import { LoadingProvider } from './containers/Loading'
 import { Applications, NewApplication } from './pages'
 import client from './config/graphql'
 
 const App = () => (
   <ApolloProvider client={client}>
-    <Router>
-      <>
-        <Header />
+    <LoadingProvider>
+      <Router>
+        <>
+          <Header />
 
-        <Switch>
-          <Redirect exact path="/" to="/applications" />
-          <Route exact path="/applications" component={Applications} />
-          <Route exact path="/applications/new" component={NewApplication} />
-        </Switch>
-      </>
-    </Router>
+          <Switch>
+            <Redirect exact path="/" to="/applications" />
+            <Route exact path="/applications" component={Applications} />
+            <Route exact path="/applications/new" component={NewApplication} />
+          </Switch>
+        </>
+      </Router>
+    </LoadingProvider>
   </ApolloProvider>
 )
 
