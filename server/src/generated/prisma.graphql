@@ -1,5 +1,5 @@
 # source: http://localhost:4466
-# timestamp: Sat Sep 29 2018 20:07:33 GMT-0400 (AST)
+# timestamp: Mon Oct 01 2018 12:43:58 GMT-0400 (AST)
 
 type AggregateApplication {
   count: Int!
@@ -38,6 +38,7 @@ type Application implements Node {
   interestedInstruments: [String!]!
   reason: String
   status: ApplicationStatus!
+  hobbies: String
 }
 
 """A connection to a list of items."""
@@ -75,6 +76,7 @@ input ApplicationCreateInput {
   churchPosition: String
   reason: String
   status: ApplicationStatus
+  hobbies: String
   ministryAreas: ApplicationCreateministryAreasInput
   interestedInstruments: ApplicationCreateinterestedInstrumentsInput
   phone: PhoneNumberCreateManyInput
@@ -148,6 +150,8 @@ enum ApplicationOrderByInput {
   reason_DESC
   status_ASC
   status_DESC
+  hobbies_ASC
+  hobbies_DESC
   updatedAt_ASC
   updatedAt_DESC
   createdAt_ASC
@@ -182,6 +186,7 @@ type ApplicationPreviousValues {
   interestedInstruments: [String!]!
   reason: String
   status: ApplicationStatus!
+  hobbies: String
 }
 
 enum ApplicationStatus {
@@ -255,6 +260,7 @@ input ApplicationUpdateInput {
   churchPosition: String
   reason: String
   status: ApplicationStatus
+  hobbies: String
   ministryAreas: ApplicationUpdateministryAreasInput
   interestedInstruments: ApplicationUpdateinterestedInstrumentsInput
   phone: PhoneNumberUpdateManyInput
@@ -1151,6 +1157,46 @@ input ApplicationWhereInput {
 
   """All values that are not contained in given list."""
   status_not_in: [ApplicationStatus!]
+  hobbies: String
+
+  """All values that are not equal to given value."""
+  hobbies_not: String
+
+  """All values that are contained in given list."""
+  hobbies_in: [String!]
+
+  """All values that are not contained in given list."""
+  hobbies_not_in: [String!]
+
+  """All values less than the given value."""
+  hobbies_lt: String
+
+  """All values less than or equal the given value."""
+  hobbies_lte: String
+
+  """All values greater than the given value."""
+  hobbies_gt: String
+
+  """All values greater than or equal the given value."""
+  hobbies_gte: String
+
+  """All values containing the given string."""
+  hobbies_contains: String
+
+  """All values not containing the given string."""
+  hobbies_not_contains: String
+
+  """All values starting with the given string."""
+  hobbies_starts_with: String
+
+  """All values not starting with the given string."""
+  hobbies_not_starts_with: String
+
+  """All values ending with the given string."""
+  hobbies_ends_with: String
+
+  """All values not ending with the given string."""
+  hobbies_not_ends_with: String
   phone_every: PhoneNumberWhereInput
   phone_some: PhoneNumberWhereInput
   phone_none: PhoneNumberWhereInput

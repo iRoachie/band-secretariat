@@ -97,6 +97,7 @@ type Application implements Node {
   interestedInstruments: [String!]!
   reason: String
   status: ApplicationStatus!
+  hobbies: String
 }
 
 """A connection to a list of items."""
@@ -134,6 +135,7 @@ input ApplicationCreateInput {
   churchPosition: String
   reason: String
   status: ApplicationStatus
+  hobbies: String
   ministryAreas: ApplicationCreateministryAreasInput
   interestedInstruments: ApplicationCreateinterestedInstrumentsInput
   phone: PhoneNumberCreateManyInput
@@ -207,6 +209,8 @@ enum ApplicationOrderByInput {
   reason_DESC
   status_ASC
   status_DESC
+  hobbies_ASC
+  hobbies_DESC
   updatedAt_ASC
   updatedAt_DESC
   createdAt_ASC
@@ -241,6 +245,7 @@ type ApplicationPreviousValues {
   interestedInstruments: [String!]!
   reason: String
   status: ApplicationStatus!
+  hobbies: String
 }
 
 enum ApplicationStatus {
@@ -314,6 +319,7 @@ input ApplicationUpdateInput {
   churchPosition: String
   reason: String
   status: ApplicationStatus
+  hobbies: String
   ministryAreas: ApplicationUpdateministryAreasInput
   interestedInstruments: ApplicationUpdateinterestedInstrumentsInput
   phone: PhoneNumberUpdateManyInput
@@ -1210,6 +1216,46 @@ input ApplicationWhereInput {
 
   """All values that are not contained in given list."""
   status_not_in: [ApplicationStatus!]
+  hobbies: String
+
+  """All values that are not equal to given value."""
+  hobbies_not: String
+
+  """All values that are contained in given list."""
+  hobbies_in: [String!]
+
+  """All values that are not contained in given list."""
+  hobbies_not_in: [String!]
+
+  """All values less than the given value."""
+  hobbies_lt: String
+
+  """All values less than or equal the given value."""
+  hobbies_lte: String
+
+  """All values greater than the given value."""
+  hobbies_gt: String
+
+  """All values greater than or equal the given value."""
+  hobbies_gte: String
+
+  """All values containing the given string."""
+  hobbies_contains: String
+
+  """All values not containing the given string."""
+  hobbies_not_contains: String
+
+  """All values starting with the given string."""
+  hobbies_starts_with: String
+
+  """All values not starting with the given string."""
+  hobbies_not_starts_with: String
+
+  """All values ending with the given string."""
+  hobbies_ends_with: String
+
+  """All values not ending with the given string."""
+  hobbies_not_ends_with: String
   phone_every: PhoneNumberWhereInput
   phone_some: PhoneNumberWhereInput
   phone_none: PhoneNumberWhereInput
@@ -1635,6 +1681,8 @@ export type ApplicationOrderByInput =   'id_ASC' |
   'reason_DESC' |
   'status_ASC' |
   'status_DESC' |
+  'hobbies_ASC' |
+  'hobbies_DESC' |
   'updatedAt_ASC' |
   'updatedAt_DESC' |
   'createdAt_ASC' |
@@ -1998,6 +2046,20 @@ export interface ApplicationWhereInput {
   status_not?: ApplicationStatus
   status_in?: ApplicationStatus[] | ApplicationStatus
   status_not_in?: ApplicationStatus[] | ApplicationStatus
+  hobbies?: String
+  hobbies_not?: String
+  hobbies_in?: String[] | String
+  hobbies_not_in?: String[] | String
+  hobbies_lt?: String
+  hobbies_lte?: String
+  hobbies_gt?: String
+  hobbies_gte?: String
+  hobbies_contains?: String
+  hobbies_not_contains?: String
+  hobbies_starts_with?: String
+  hobbies_not_starts_with?: String
+  hobbies_ends_with?: String
+  hobbies_not_ends_with?: String
   phone_every?: PhoneNumberWhereInput
   phone_some?: PhoneNumberWhereInput
   phone_none?: PhoneNumberWhereInput
@@ -2066,6 +2128,7 @@ export interface ApplicationUpdateInput {
   churchPosition?: String
   reason?: String
   status?: ApplicationStatus
+  hobbies?: String
   ministryAreas?: ApplicationUpdateministryAreasInput
   interestedInstruments?: ApplicationUpdateinterestedInstrumentsInput
   phone?: PhoneNumberUpdateManyInput
@@ -2105,6 +2168,7 @@ export interface ApplicationCreateInput {
   churchPosition?: String
   reason?: String
   status?: ApplicationStatus
+  hobbies?: String
   ministryAreas?: ApplicationCreateministryAreasInput
   interestedInstruments?: ApplicationCreateinterestedInstrumentsInput
   phone?: PhoneNumberCreateManyInput
@@ -2237,6 +2301,7 @@ export interface Application extends Node {
   interestedInstruments: String[]
   reason?: String
   status: ApplicationStatus
+  hobbies?: String
 }
 
 export interface PhoneNumberPreviousValues {
@@ -2317,6 +2382,7 @@ export interface ApplicationPreviousValues {
   interestedInstruments: String[]
   reason?: String
   status: ApplicationStatus
+  hobbies?: String
 }
 
 export interface AggregateApplication {

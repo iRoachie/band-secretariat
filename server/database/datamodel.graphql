@@ -66,4 +66,5 @@ type Application {
   interestedInstruments: [String!]!
   reason: String
   status: ApplicationStatus! @default(value: "APPLIED")
+  hobbies: String
 }
