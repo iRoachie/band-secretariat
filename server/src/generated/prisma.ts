@@ -1590,9 +1590,6 @@ input PhoneNumberWhereInput {
 
   """All values not ending with the given string."""
   number_not_ends_with: String
-  _MagicalBackRelation_ApplicationToPhoneNumber_every: ApplicationWhereInput
-  _MagicalBackRelation_ApplicationToPhoneNumber_some: ApplicationWhereInput
-  _MagicalBackRelation_ApplicationToPhoneNumber_none: ApplicationWhereInput
 }
 
 input PhoneNumberWhereUniqueInput {
@@ -2250,9 +2247,6 @@ export interface PhoneNumberWhereInput {
   number_not_starts_with?: String
   number_ends_with?: String
   number_not_ends_with?: String
-  _MagicalBackRelation_ApplicationToPhoneNumber_every?: ApplicationWhereInput
-  _MagicalBackRelation_ApplicationToPhoneNumber_some?: ApplicationWhereInput
-  _MagicalBackRelation_ApplicationToPhoneNumber_none?: ApplicationWhereInput
 }
 
 /*
