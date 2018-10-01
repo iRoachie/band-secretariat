@@ -169,9 +169,9 @@ class NewApplication extends React.Component<Props, State> {
               application.surName
             }-${Date.now()}`
 
-            await this.uploadImage(photoURL, path)
-
-            application.photoURL = `/avatars/${path}`
+            const response = await this.uploadImage(photoURL, path)
+            const downloadPath = await response.ref!.getDownloadURL()
+            application.photoURL = downloadPath
           } catch (error) {
             this.showError(error)
             return
