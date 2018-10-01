@@ -16,7 +16,7 @@ const GET_APPLICATIONS = gql`
       surName
       photoURL
       status
-      phone {
+      phones {
         number
       }
       email
