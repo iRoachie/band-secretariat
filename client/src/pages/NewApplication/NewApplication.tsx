@@ -31,6 +31,7 @@ import {
 import { LoadingConsumer } from '../../containers/Loading'
 import { countries, instruments, classes, ministries } from '../../data'
 import { ApplicationCreateInput } from '../../../../server/src/generated/prisma'
+import { firebase } from '../../config'
 
 const FormItem = Form.Item
 const CheckboxGroup = Checkbox.Group
@@ -76,11 +77,18 @@ class NewApplication extends React.Component<Props, State> {
     reader.readAsDataURL(info.file.originFileObj!)
   }
 
+  showError = (err: any) => {
+    this.props.hideLoading()
+    // tslint:disable-next-line:no-console
+    console.error(err)
+    message.error('Error adding new application')
+  }
+
   submitHandler = (event: React.SyntheticEvent, addApplication: () => any) => {
     event.preventDefault()
 
     this.setState({ hasErrors: false }, () => {
-      this.props.form.validateFields((err: string, values: any) => {
+      this.props.form.validateFields(async (err: string, values: any) => {
         if (err) {
           document.body.scrollTop = document.documentElement.scrollTop = 0
           this.setState({ hasErrors: true })
@@ -112,7 +120,6 @@ class NewApplication extends React.Component<Props, State> {
           ...(!!values.grade && { grade: values.grade }),
           ...(!!values.church && { church: values.church }),
           ...(!!values.club && { club: values.club }),
-          ...(!!photoURL && { photoURL }),
           ...(!!values.pathfinder_adventurerClass && {
             pathfinder_adventurerClass: values.pathfinder_adventurerClass,
           }),
@@ -154,9 +161,34 @@ class NewApplication extends React.Component<Props, State> {
           },
         }
 
+        this.props.showLoading()
+
+        if (photoURL !== '') {
+          try {
+            const path = `${application.firstName}-${
+              application.surName
+            }-${Date.now()}`
+
+            await this.uploadImage(photoURL, path)
+
+            application.photoURL = `/avatars/${path}`
+          } catch (error) {
+            this.showError(error)
+            return
+          }
+        }
+
         this.saveApplication(application, addApplication)
       })
     })
+  }
+
+  uploadImage = (dataURL: string, path: string) => {
+    return firebase
+      .storage()
+      .ref('/avatars')
+      .child(path)
+      .putString(dataURL, 'data_url')
   }
 
   saveApplication = async (
@@ -164,8 +196,6 @@ class NewApplication extends React.Component<Props, State> {
     addApplication: (...args: any[]) => Promise<{ data: any }>
   ) => {
     try {
-      this.props.showLoading()
-
       const { data } = await addApplication({ variables: { application } })
 
       notification.success({
@@ -180,10 +210,7 @@ class NewApplication extends React.Component<Props, State> {
         },
       })
     } catch (err) {
-      this.props.hideLoading()
-      // tslint:disable-next-line:no-console
-      console.error(err)
-      message.error('Error adding new application')
+      this.showError(err)
     }
   }
 
