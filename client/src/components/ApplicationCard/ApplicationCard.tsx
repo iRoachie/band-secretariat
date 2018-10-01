@@ -4,8 +4,11 @@ import { Link } from 'react-router-dom'
 import { Card } from 'antd'
 import styled from 'styled-components'
 
-import { Application } from '../../../../server/src/generated/prisma'
-import { Status, Avatar } from './styles'
+import { Theme } from '../../config'
+import {
+  Application,
+  ApplicationStatus,
+} from '../../../../server/src/generated/prisma'
 import CardItem from './components/CardItem'
 
 interface Props {
@@ -15,7 +18,7 @@ interface Props {
 const ApplicationCard: React.SFC<Props> = ({ application }) => (
   <Link to={`/applications/${application.id}`} className="block ">
     <Content
-      cover={<Avatar alt="Applicant Photo" src={application.photoURL} />}
+      cover={<Avatar image={application.photoURL!} />}
       actions={[
         !!application.phones &&
           !!application.phones[0] && (
@@ -43,6 +46,8 @@ const ApplicationCard: React.SFC<Props> = ({ application }) => (
   </Link>
 )
 
+/** Styles */
+
 const Content = styled(Card)`
   .ant-card-actions {
     display: flex;
@@ -60,6 +65,41 @@ const Content = styled(Card)`
     border-right: 0;
     margin-bottom: 1rem;
   }
+`
+
+interface StatusProps {
+  status: ApplicationStatus
+}
+
+const Status = styled.span.attrs({
+  className: 'p-1 font-bold text-xs text-right absolute',
+})`
+  top: 0.5rem;
+  left: 0.5rem;
+  white-space: nowrap;
+  background: ${(props: StatusProps) => {
+    return Theme.status[props.status.toLowerCase()]
+  }};
+  color: ${(props: StatusProps) => {
+    if (props.status === 'APPLIED' || props.status === 'ASSIGNED') {
+      return 'rgba(0,0,0,.87)'
+    }
+
+    return '#fff'
+  }};
+`
+
+interface AvatarProps {
+  image: string
+}
+
+const Avatar = styled.div.attrs({
+  className: 'h-auto w-64',
+})`
+  min-height: 15rem;
+  background-size: cover;
+  background-image: url(${(props: AvatarProps) => props.image});
+  background-position: center top;
 `
 
 export default ApplicationCard
