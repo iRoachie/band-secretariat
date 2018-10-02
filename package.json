@@ -1,11 +1,18 @@
 {
   "name": "band-secretariat",
   "version": "1.0.0",
+  "private": true,
   "main": "index.js",
   "repository": "git@github.com:iRoachie/band-secretariat.git",
   "author": "Kyle Roach <kroach.work@gmail.com>",
   "license": "MIT",
   "scripts": {
+    "start": "concurrently \"yarn start:server\" \"yarn start:client\"",
+    "start:client": "yarn --cwd client start",
+    "start:server": "yarn --cwd server start:local",
     "postinstall": "yarn --cwd server"
+  },
+  "devDependencies": {
+    "concurrently": "^4.0.1"
   }
 }
