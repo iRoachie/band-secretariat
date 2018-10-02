@@ -15,7 +15,6 @@ import { RouteComponentProps } from 'react-router'
 import { UploadChangeParam } from 'antd/lib/upload/interface'
 import { FormComponentProps } from 'antd/lib/form'
 import styled from 'styled-components'
-import gql from 'graphql-tag'
 import { Mutation } from 'react-apollo'
 
 import {
@@ -32,17 +31,10 @@ import { LoadingConsumer } from '../../containers/Loading'
 import { countries, instruments, classes, ministries, bands } from '../../data'
 import { ApplicationCreateInput } from '../../../../server/src/generated/prisma'
 import { firebase } from '../../config'
+import { GetApplicationsQuery, CreateApplicationMutation } from '../../graphql'
 
 const FormItem = Form.Item
 const CheckboxGroup = Checkbox.Group
-
-const CreateApplicationMutation = gql`
-  mutation CreateApplicationMutation($application: ApplicationCreateInput!) {
-    createApplication(data: $application) {
-      id
-    }
-  }
-`
 
 interface State {
   photoURL: string
@@ -220,7 +212,21 @@ class NewApplication extends React.Component<Props, State> {
     const { getFieldDecorator } = this.props.form
 
     return (
-      <Mutation mutation={CreateApplicationMutation}>
+      <Mutation
+        mutation={CreateApplicationMutation}
+        update={(cache, { data: { createApplication } }) => {
+          const { applications }: any = cache.readQuery({
+            query: GetApplicationsQuery,
+          })
+
+          if (applications) {
+            cache.writeQuery({
+              query: GetApplicationsQuery,
+              data: { applications: applications.concat([createApplication]) },
+            })
+          }
+        }}
+      >
         {createApplication => (
           <Form onSubmit={e => this.submitHandler(e, createApplication)}>
             <Page

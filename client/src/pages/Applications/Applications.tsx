@@ -1,29 +1,12 @@
 import React from 'react'
-import gql from 'graphql-tag'
 import { Query } from 'react-apollo'
 import { Button, Spin, Icon } from 'antd'
 import { RouteComponentProps } from 'react-router-dom'
 import styled from 'styled-components'
 
 import { Page, ApplicationCard, Breadcrumbs } from '../../components'
+import { GetApplicationsQuery } from '../../graphql'
 import { Application } from '../../../../server/src/generated/prisma'
-
-const GET_APPLICATIONS = gql`
-  {
-    applications {
-      id
-      firstName
-      surName
-      photoURL
-      status
-      phones {
-        number
-      }
-      email
-      applicationDate
-    }
-  }
-`
 
 interface State {
   search: string
@@ -59,7 +42,7 @@ class Applications extends React.Component<RouteComponentProps<{}>, State> {
           </div>
         }
       >
-        <Query query={GET_APPLICATIONS}>
+        <Query query={GetApplicationsQuery}>
           {({ loading, error, data }) => {
             if (loading) {
               return (

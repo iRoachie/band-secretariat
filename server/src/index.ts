@@ -31,12 +31,12 @@ const resolvers = {
     },
   },
   Mutation: {
-    createApplication: (_, args, context: Context) => {
+    createApplication: (_, args, context: Context, info) => {
       return context.db.mutation.createApplication({
         data: {
           ...args.data,
         },
-      })
+      }, info)
     },
     updateApplication: (_, args, context: Context) => {
       return context.db.mutation.updateApplication({
