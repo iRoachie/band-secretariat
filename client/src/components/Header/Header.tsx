@@ -7,7 +7,7 @@ import {
   Account,
   MobileNav,
 } from './styles'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 
 import logo from '../../assets/band-logo.png'
 
@@ -22,13 +22,17 @@ const Header = () => (
       <div className="container items-center flex justify-between">
         <HeaderLeft>
           <Link to="/" className="h-10">
-            <img src={logo} className="rounded-lg h-full w-10" />
+            <img
+              src={logo}
+              className="rounded-lg h-full w-10"
+              alt="Barbados Pathfinder Band"
+            />
           </Link>
 
           <ul className="h-full ml-10 hidden sm:block">
             {items.map(a => (
-              <NavItem to={a.to} key={a.title}>
-                {a.title}
+              <NavItem key={a.title}>
+                <NavLink to={a.to}>{a.title}</NavLink>
               </NavItem>
             ))}
           </ul>
@@ -43,12 +47,8 @@ const Header = () => (
     <MobileNav>
       <div className="container">
         {items.map((a, index) => (
-          <NavItem
-            to={a.to}
-            key={a.title}
-            className={index === 0 ? 'pl-0' : 'pl-4'}
-          >
-            {a.title}
+          <NavItem key={a.title} className={index === 0 ? 'pl-0' : 'pl-4'}>
+            <NavLink to={a.to}>{a.title}</NavLink>
           </NavItem>
         ))}
       </div>

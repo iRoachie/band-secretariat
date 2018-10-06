@@ -1,5 +1,6 @@
 import React from 'react'
 import { DateTime } from '../../../../../server/src/generated/prisma'
+import styled from 'styled-components'
 
 interface ItemsProps {
   icon: string
@@ -7,10 +8,14 @@ interface ItemsProps {
 }
 
 const Item: React.SFC<ItemsProps> = ({ value, icon }) => (
-  <div className="flex items-center">
+  <Content className="flex items-center">
     <i className={`icon ${icon} text-lg`} />
     <p className="ml-3 text-base mb-0">{value}</p>
-  </div>
+  </Content>
 )
+
+const Content = styled.div`
+  color: hsl(0, 0%, 25%);
+`
 
 export default Item

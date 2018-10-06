@@ -8,8 +8,8 @@
   text-rendering: optimizeLegibility;
   font-size: 15px;
   color: rgba(0, 0, 0, 0.87);
-  --primary: #009688;
-  --primary-hover: #21c1b2;
+  --primary: hsl(174, 98%, 25%);
+  --primary-hover: hsl(174, 98%, 35%);
   --error: #ff0202;
   --text-primary-1: rgba(0, 0, 0, 0.87);
   --text-primary-2: rgba(0, 0, 0, 0.56);
@@ -118,4 +118,8 @@ ul {
 .ant-btn-primary:hover {
   background-color: var(--primary-hover);
   border-color: var(--primary-hover);
+}
+
+.ant-card-meta-description {
+  color: #595959;
 }

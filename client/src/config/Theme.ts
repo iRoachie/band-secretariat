@@ -1,5 +1,5 @@
 const Theme = {
-  primary: '#009688',
+  primary: 'hsl(174, 98%, 25%)',
   border: '#E0E4E7',
   status: {
     assigned: '#FFE300',

@@ -1,12 +1,11 @@
 import styled from 'styled-components'
-import { NavLink } from 'react-router-dom'
 import { Theme, media } from '../../config'
 
 const HeaderLeft = styled.section.attrs({
   className: 'flex flex-1 h-16 items-center',
 })``
 
-const HeaderRight = styled.ul.attrs({
+const HeaderRight = styled.section.attrs({
   className: 'relative pl-5 sm:pl-10',
 })`
   &::before {
@@ -21,31 +20,39 @@ const HeaderRight = styled.ul.attrs({
   }
 `
 
-const NavItem = styled(NavLink).attrs({
+const NavItem = styled.li.attrs({
   className:
-    'h-full inline-flex items-center relative pr-4 sm:pl-5 sm:pr-5 font-semibold text-lg',
+    'h-full inline-flex items-center relative pr-4 sm:p-0 font-semibold text-lg',
 })`
   color: rgba(255, 255, 255, 0.56);
 
-  &.active {
+  a.active {
     color: #fff;
   }
 
   @media ${media.small} {
     color: rgba(0, 0, 0, 0.56);
 
-    &.active {
-      color: ${Theme.primary};
+    a {
+      height: 100%;
+      vertical-align: middle;
+      display: flex;
+      align-items: center;
+      padding: 0 1.25rem;
 
-      &::after {
-        display: block;
-        content: '';
-        position: absolute;
-        width: 100%;
-        height: 2px;
-        left: 0;
-        bottom: -2px;
-        background: ${Theme.primary};
+      &.active {
+        color: ${Theme.primary};
+
+        &::after {
+          display: block;
+          content: '';
+          position: absolute;
+          width: 100%;
+          height: 2px;
+          left: 0;
+          bottom: -2px;
+          background: ${Theme.primary};
+        }
       }
     }
   }
